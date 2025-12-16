@@ -31,7 +31,13 @@ class Task:
         self.__assignee = user
         print(f"Task assigned to {user}.")
 
-    def editTask(self, newTitle, newDesc, newDeadline, newPriority):
+    def editTask(
+        self,
+        newTitle: str,
+        newDesc: str,
+        newDeadline: str,
+        newPriority: int,
+    ):
         self.__title = newTitle
         self.__description = newDesc
         self.__deadline = newDeadline
