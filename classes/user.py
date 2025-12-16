@@ -1,6 +1,3 @@
-from .task import Task
-
-
 class User:
     def __init__(self, userName: str, userID: int, userEmail: str, userPassword: str):
         self.__userName = userName
