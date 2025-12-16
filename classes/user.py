@@ -1,5 +1,9 @@
 class User:
-    pass
+    def _init_(self, userName: str, userID: int, userEmail: str, password: str):
+        self.__userName = userName
+        self.__userID = userID
+        self.__userEmail = userEmail
+        self.__password = password
 
 
 class Student(User):
