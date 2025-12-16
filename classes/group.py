@@ -1,12 +1,8 @@
-from .user import Student
-
-
 class Group:
-    def __init__(
-        self, groupName: str, groupId: int, members: list[Student], leader: Student
-    ):
+    def __init__(self, groupName: str, groupId: int, members: list, leader):
         self.__groupName = groupName
         self.__groupId = groupId
-        self.__members = members
+        # Members should be only the leader after creation for now
+        self.__members = [leader]
         self.__leader = leader
         self.__tasks = []
