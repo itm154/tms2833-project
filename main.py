@@ -31,20 +31,23 @@ def taskOptions():
 def main():
     # First Page => Login Page
     # Login Page decides first action of the user.
-    loginChoice = loginPage()  
+    loginChoice = loginPage()
     if loginChoice == 1:
+        pass
         # Register a New User
         # Register user
     elif loginChoice == 2:
+        pass
         # Login Successful
         # if login == "student"
         #       studentMenu()
         # else:
         #   lecturerMenu()
-            
+
     else:
         return 0
-        #Exits the program.
-        #No error handling is required here because it is already validated with select function earlier in loginPage()
+        # Exits the program.
+        # No error handling is required here because it is already validated with select function earlier in loginPage()
+
 
 main()
