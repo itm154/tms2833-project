@@ -26,8 +26,14 @@ class User:
     def getPassword(self) -> str:
         return self.__password
 
-    def setPassword(self, password: str):
-        self.__password = password
+    def setPassword(self, userPassword: str):
+        self.__password = userPassword
+
+    def register(self):
+        print(f"User {self.__userName} is registering.")
+
+    def login(self):
+        print(f"User {self.__userName} logged in.")
 
 
 class Student(User):
@@ -37,7 +43,7 @@ class Student(User):
         matricNumber: int,
         userEmail: str,
         userPassword: str,
-        joinedGroups: list[int],
+        joinedGroups: list,
     ):
         super().__init__(userName, matricNumber, userEmail, userPassword)
         self.__joinedGroups = [] if joinedGroups is None else joinedGroups
@@ -45,8 +51,9 @@ class Student(User):
     def getJoinedGroups(self) -> list:
         return self.__joinedGroups
 
-    def joinGroup(self, groupID: int):
-        self.__joinedGroups.append(groupID)
+    def joinGroup(self, group):
+        self.__joinedGroups.append(group)
+        return
 
 
 class Lecturer(User):
@@ -65,7 +72,4 @@ class Lecturer(User):
         pass
 
     def giveComments():
-        pass
-
-    def viewTask():
         pass
