@@ -1,3 +1,8 @@
+# Usage
+# somelist = ["person 1", "person2", "person3"]
+# ui.display_list("Title", somelist)
+
+
 def display_list(title: str, items: list):
     titlebar = f"--- {title} ---"
     closing_line = "-" * len(titlebar)
