@@ -1,11 +1,10 @@
 class User:
-    def _init_(self, userName, userID, userEmail, password, groupID):
-        self.userName = userName
-        self.userID = userID
-        self.userEmail = userEmail
-        self.password = password
-        self.groupID = groupID
-        self.Loggedin = false
+    def _init_(self, userName: str, userID: int, userEmail: str, password: str):
+        self.__userName = userName
+        self.__userID = userID
+        self.__userEmail = userEmail
+        self.__password = password
+
 
 class Student(User):
     def joinGroup(self):
