@@ -12,7 +12,8 @@ def loginPage():
     choice = select("Please select a choice", login_choice)
     print(f"You have selected {choice}")  # Testing purposes only
 
-
+def registerUser():
+    
 def mainMenuOptions():
     pass
 
