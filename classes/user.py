@@ -1,9 +1,12 @@
+from .task import Task
+
+
 class User:
-    def __init__(self, userName: str, userID: int, userEmail: str, password: str):
+    def __init__(self, userName: str, userID: int, userEmail: str, userPassword: str):
         self.__userName = userName
         self.__userID = userID
         self.__userEmail = userEmail
-        self.__password = password
+        self.__password = userPassword
 
     def getUserName(self) -> str:
         return self.__userName
@@ -36,10 +39,10 @@ class Student(User):
         userName: str,
         matricNumber: int,
         userEmail: str,
-        password: str,
+        userPassword: str,
         joinedGroups: list[int],
     ):
-        super().__init__(userName, matricNumber, userEmail, password)
+        super().__init__(userName, matricNumber, userEmail, userPassword)
         self.__joinedGroups = [] if joinedGroups is None else joinedGroups
 
     def getJoinedGroups(self) -> list:
