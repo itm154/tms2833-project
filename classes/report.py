@@ -1,4 +1,5 @@
-from classes import Group, User
+from .user import User
+from .group import Group
 
 
 class Report:
@@ -20,14 +21,14 @@ class Report:
         print("=== Group Summary Report ===")
         print(f"Report ID: {self.__reportID}")
         print(f"Generated Date: {self.__generatedDate}")
-        print(f"Group Name: {group.groupName}")
-        print(f"Total Tasks: {len(group.tasks)}")
+        print(f"Group Name: {group.__groupName}")
+        print(f"Total Tasks: {len(group.__tasks)}")
 
     def generateMemberReport(self, user: User):
         print("=== Member Report ===")
         print(f"Report ID: {self.__reportID}")
         print(f"Generated Date: {self.__generatedDate}")
-        print(f"Member: {user.userName}")
+        print(f"Member: {user.__userName}")
         print(f"Contribution: {self.__memberContribution}")
 
     def calculateCompletionRate(self):
