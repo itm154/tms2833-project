@@ -1,5 +1,4 @@
-from .group import Group
-from .user import User
+from classes import Group, User
 
 
 class Report:
@@ -11,36 +10,39 @@ class Report:
         completedTasks: int,
         memberContribution: str,
     ):
-        self.reportID = reportID
-        self.generatedDate = generatedDate
-        self.totalTasks = totalTasks
-        self.completedTasks = completedTasks
-        self.memberContribution = memberContribution
+        self.__reportID = reportID
+        self.__generatedDate = generatedDate
+        self.__totalTasks = totalTasks
+        self.__completedTasks = completedTasks
+        self.__memberContribution = memberContribution
 
     def generateGroupSummary(self, group: Group):
-        print(f"=== Group Summary Report (ReportID: {self.reportID}) ===")
-        print(f"Generated Date: {self.generatedDate}")
+        print("=== Group Summary Report ===")
+        print(f"Report ID: {self.__reportID}")
+        print(f"Generated Date: {self.__generatedDate}")
         print(f"Group Name: {group.groupName}")
         print(f"Total Tasks: {len(group.tasks)}")
 
     def generateMemberReport(self, user: User):
-        print(f"=== Member Report (ReportID: {self.reportID}) ===")
-        print(f"Generated Date: {self.generatedDate}")
+        print("=== Member Report ===")
+        print(f"Report ID: {self.__reportID}")
+        print(f"Generated Date: {self.__generatedDate}")
         print(f"Member: {user.userName}")
-        print(f"Contribution: {self.memberContribution}")
+        print(f"Contribution: {self.__memberContribution}")
 
     def calculateCompletionRate(self):
-        if self.totalTasks == 0:
+        if self.__totalTasks == 0:
             rate = 0.0
         else:
-            rate = (self.completedTasks / self.totalTasks) * 100
+            rate = (self.__completedTasks / self.__totalTasks) * 100
+
         print(f"Completion Rate: {rate:.2f}%")
         return rate
 
     def displayReport(self):
         print("=== Report Info ===")
-        print(f"reportID: {self.reportID}")
-        print(f"generatedDate: {self.generatedDate}")
-        print(f"totalTasks: {self.totalTasks}")
-        print(f"completedTasks: {self.completedTasks}")
-        print(f"memberContribution: {self.memberContribution}")
+        print(f"Report ID: {self.__reportID}")
+        print(f"Generated Date: {self.__generatedDate}")
+        print(f"Total Tasks: {self.__totalTasks}")
+        print(f"Completed Tasks: {self.__completedTasks}")
+        print(f"Member Contribution: {self.__memberContribution}")
