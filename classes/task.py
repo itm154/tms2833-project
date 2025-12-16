@@ -12,38 +12,38 @@ class Task:
         status: str = "To Do",
         assignee: User | None = None,
     ):
-        self.taskID = taskID
-        self.title = title
-        self.description = description
-        self.deadline = deadline
-        self.priority = priority
-        self.status = status
-        self.assignee = assignee
+        self.__taskID = taskID
+        self.__title = title
+        self.__description = description
+        self.__deadline = deadline
+        self.__priority = priority
+        self.__status = status
+        self.__assignee = assignee
 
     def createTask(self):
-        print(f"Task '{self.title}' created.")
+        print(f"Task '{self.__title}' created.")
 
     def updateStatus(self, newStatus: str):
-        self.status = newStatus
-        print(f"Task status updated to '{self.status}'.")
+        self.__status = newStatus
+        print(f"Task status updated to '{self.__status}'.")
 
     def assignTo(self, user: User):
-        self.assignee = user
+        self.__assignee = user
         print(f"Task assigned to {user}.")
 
     def editTask(self, newTitle, newDesc, newDeadline, newPriority):
-        self.title = newTitle
-        self.description = newDesc
-        self.deadline = newDeadline
-        self.priority = newPriority
+        self.__title = newTitle
+        self.__description = newDesc
+        self.__deadline = newDeadline
+        self.__priority = newPriority
         print("Task updated successfully.")
 
     def displayTaskInfo(self):
         print("=== Task Info ===")
-        print(f"taskID: {self.taskID}")
-        print(f"title: {self.title}")
-        print(f"description: {self.description}")
-        print(f"deadline: {self.deadline}")
-        print(f"priority: {self.priority}")
-        print(f"status: {self.status}")
-        print(f"assignee: {self.assignee}")
+        print(f"Task ID: {self.__taskID}")
+        print(f"Title: {self.__title}")
+        print(f"Description: {self.__description}")
+        print(f"Deadline: {self.__deadline}")
+        print(f"Priority: {self.__priority}")
+        print(f"Status: {self.__status}")
+        print(f"Assignee: {self.__assignee}")
