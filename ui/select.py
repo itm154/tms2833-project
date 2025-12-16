@@ -1,0 +1,24 @@
+# Usage
+# options = ["thing 1", "Thing 2", "Thing 3"]
+# choice = ui.select("Select one", options)
+#
+# match choice:
+#     case "thing 1":
+#         print("doing thing 1")
+# ...
+
+
+def select(title: str, options: list[str]) -> str:
+    print(title)
+    for i, option in enumerate(options):
+        print(f"{i + 1}. {option}")
+
+    while True:
+        try:
+            choice = input(f"[1-{len(options)}] > ")
+            if 0 <= int(choice) - 1 < len(options):
+                return options[int(choice) - 1]
+            else:
+                print("Error: Invalid choice. Please try again.")
+        except ValueError:
+            print("Error: Invalid Input. Please enter a number.")

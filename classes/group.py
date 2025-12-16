@@ -1,4 +1,4 @@
-from classes import Student
+from .user import Student
 
 
 class Group:
