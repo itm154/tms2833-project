@@ -2,7 +2,7 @@ from .user import Student
 
 
 class Group:
-    def _init_(
+    def __init__(
         self, groupName: str, groupId: int, members: list[Student], leader: Student
     ):
         self.__groupName = groupName
