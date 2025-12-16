@@ -21,4 +21,20 @@ class Student(User):
 
 
 class Lecturer(User):
-    pass
+    def __init__(self, office, faculty, courseID):
+        super().__init__()
+        self.__office = office
+        self.__faculty = faculty
+        self.__courseID = courseID
+
+    def viewProgress():
+        pass
+
+    def generateReport():
+        pass
+
+    def giveComments():
+        pass
+
+    def viewTask():
+        pass
