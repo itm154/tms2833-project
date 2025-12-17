@@ -16,7 +16,7 @@ def select(title: str, options: list[str]) -> int:
         try:
             choice = input(f"[1-{len(options)}] > ")
             if 0 <= int(choice) - 1 < len(options):
-                return int(choice) - 1
+                return int(choice)
             else:
                 print("Error: Invalid choice. Please try again.")
         except ValueError:
