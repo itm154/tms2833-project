@@ -28,3 +28,4 @@ def numeric_input(prompt: str) -> int:
             return number
         except ValueError:
             print("Error: Invalid input. Please enter a number.")
+

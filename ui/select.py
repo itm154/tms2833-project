@@ -2,7 +2,7 @@
 # choice = ui.select("Select one", ["thing 1", "Thing 2", "Thing 3"])
 #
 # match choice:
-#     case "thing 1":
+#     case 1:
 #         print("doing thing 1")
 # ...
 
