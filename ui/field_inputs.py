@@ -3,13 +3,13 @@ import getpass
 
 
 def is_valid_email(email: str) -> bool:
-    email_regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    email_regex = r"[^@]+@[^@]+\.[^@]+"
     return re.match(email_regex, email) is not None
 
 
-def email_inputfield() -> str:
+def email_inputfield(prompt: str) -> str:
     while True:
-        email = input("Email: ")
+        email = input(prompt)
         if is_valid_email(email):
             return email
         else:
