@@ -1,6 +1,5 @@
 # Usage
-# options = ["thing 1", "Thing 2", "Thing 3"]
-# choice = ui.select("Select one", options)
+# choice = ui.select("Select one", ["thing 1", "Thing 2", "Thing 3"])
 #
 # match choice:
 #     case "thing 1":
