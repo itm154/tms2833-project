@@ -1,5 +1,7 @@
 from classes import Lecturer, Student
 import ui
+import auth
+
 
 # Flow of app
 # 1. Login (Please take over for auth regisering issues)
@@ -18,8 +20,7 @@ def register():
     # Register specific userType
     if userType == 1:
         matricNumber = ui.numeric_input("Please enter your Matric Number: ")
-        newStudent = Student(userName, matricNumber, userEmail, userPassword, [])
-        print(f"{newStudent.getUserName()} was successfully registered.")
+        newUser = Student(userName, matricNumber, userEmail, userPassword, [])
     else:
         faculty = [
             "FEB",
@@ -37,11 +38,26 @@ def register():
         office = str(input("Please enter your Office location: "))
         faculty = faculty[ui.select("Please enter your Faculty: ", faculty) - 1]
         courseID = input("Please enter your Course ID: ")
-        newLecturer = Lecturer(
+        newUser = Lecturer(
             userName, staffID, userEmail, userPassword, office, faculty, courseID
         )
-        print(f"{newLecturer.getUserName()} was successfully registered.")
+
+    auth.save_user(newUser)
+    print(f"{newUser.getUserName()} was successfully registered.")
     return
+
+
+def login():
+    userName = str(input("Please insert your Username: "))
+    userPassword = ui.hidden_input("Please enter your Password: ")
+
+    user = auth.load_user(userName)
+
+    if user and user.getPassword() == userPassword:
+        print(f"Welcome, {user.getUserName()}!")
+        # Here you can add the logic for what happens after a successful login
+    else:
+        print("Invalid username or password.")
 
 
 def main():
@@ -53,8 +69,7 @@ def main():
             case 1:
                 register()
             case 2:
-                # login()
-                pass
+                login()
             case 3:
                 return
 

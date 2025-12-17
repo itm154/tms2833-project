@@ -8,14 +8,8 @@ class User:
     def getUserName(self) -> str:
         return self.__userName
 
-    def setUserName(self, userName: str):
-        self.__userName = userName
-
     def getUserID(self) -> int:
         return self.__userID
-
-    def setUserID(self, userID: int):
-        self.__userID = userID
 
     def getUserEmail(self) -> str:
         return self.__userEmail
@@ -28,12 +22,6 @@ class User:
 
     def setPassword(self, userPassword: str):
         self.__password = userPassword
-
-    def register(self):
-        print(f"User {self.__userName} is registering.")
-
-    def login(self):
-        print(f"User {self.__userName} logged in.")
 
 
 class Student(User):
