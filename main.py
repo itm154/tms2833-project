@@ -6,19 +6,6 @@ from ui import display_list, select
 # 2. Implement different UIs for different Users
 
 
-# Function to prompt Login Page
-def loginPage():
-    title_list = []  # Empty title list to show front page
-    display_list("Welcome to Our App!", title_list)
-    # List of login choices
-    login_choice = ["Register As User", "Log in", "Exit"]
-    # Make a choice and return the value
-    choice = 1
-    # select("Please select a choice", login_choice)
-    print(f"You have selected {choice}")  # Testing purposes only
-    return choice
-
-
 # Function to register a New User
 def registerUser():
     # Prompt user to choose account type
@@ -66,23 +53,19 @@ def taskOptions():
 def main():
     # First Page => Login Page
     # Login Page decides first action of the user.
-    loginChoice = loginPage()
-    if loginChoice == 1:
-        registerUser()
-        # Register a New User
-        # Register user
-    elif loginChoice == 2:
-        pass
-        # Login Successful
-        # if login == "student"
-        #       studentMenu()
-        # else:
-        #   lecturerMenu()
-
-    else:
-        return 0
-        # Exits the program.
-        # No error handling is required here because it is already validated with select function earlier in loginPage()
+    choice = select(
+        "Choose to Register or Login", ["Register As User", "Log in", "Exit"]
+    )
+    print(choice)
+    match choice:
+        case 1:
+            registerUser()
+        case 2:
+            # login()
+            pass
+        case 3:
+            return
 
 
-main()
+if __name__ == "__main__":
+    main()
