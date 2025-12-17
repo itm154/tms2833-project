@@ -8,7 +8,7 @@
 # ...
 
 
-def select(title: str, options: list[str]) -> str:
+def select(title: str, options: list[str]) -> int:
     print(title)
     for i, option in enumerate(options):
         print(f"{i + 1}. {option}")
@@ -17,7 +17,7 @@ def select(title: str, options: list[str]) -> str:
         try:
             choice = input(f"[1-{len(options)}] > ")
             if 0 <= int(choice) - 1 < len(options):
-                return options[int(choice) - 1]
+                return int(choice) - 1
             else:
                 print("Error: Invalid choice. Please try again.")
         except ValueError:
