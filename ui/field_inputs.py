@@ -7,9 +7,9 @@ def is_valid_email(email: str) -> bool:
     return re.match(email_regex, email) is not None
 
 
-def email_inputfield() -> str:
+def email_inputfield(prompt: str) -> str:
     while True:
-        email = input("Email: ")
+        email = input(prompt)
         if is_valid_email(email):
             return email
         else:
