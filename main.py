@@ -1,7 +1,6 @@
-from classes import Lecturer, Student
-import ui
 import auth
-
+import ui
+from classes import Lecturer, Student
 
 # Flow of app
 # 1. Login (Please take over for auth regisering issues)
@@ -55,21 +54,32 @@ def login():
 
     if user and user.getPassword() == userPassword:
         print(f"Welcome, {user.getUserName()}!")
+        return user
         # Here you can add the logic for what happens after a successful login
     else:
         print("Invalid username or password.")
+        return None
 
 
 def main():
     while True:
         choice = ui.select(
-            "Choose to Register or Login", ["Register", "Log in", "Exit"]
+            "Choose to Register or Login",
+            ["Register", "Log in as Student", "Exit"],
         )
         match choice:
             case 1:
                 register()
             case 2:
-                login()
+                currentSession = login()
+                if isinstance(currentSession, Student):
+                    pass
+                    # studentMenu()
+                elif isinstance(currentSession, Lecturer):
+                    # Lecturer Menu
+                    pass
+                else:
+                    pass
             case 3:
                 return
 
