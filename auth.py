@@ -2,7 +2,7 @@ import os
 import pickle
 
 import ui
-from classes import Group, Lecturer, Student, User
+from classes import Lecturer, Student, User
 
 DATA_DIR = "data"
 
@@ -73,12 +73,3 @@ def load_user(username: str) -> User | None:
         with open(file_path, "rb") as f:
             return pickle.load(f)
     return None
-
-
-def save_group(group: Group):
-    if not os.path.exists(DATA_DIR):
-        os.makedirs(DATA_DIR)
-
-    file_path = os.path.join(DATA_DIR, f"group_{group.getGroupID()}.pkl")
-    with open(file_path, "wb") as f:
-        pickle.dump(group, f)
