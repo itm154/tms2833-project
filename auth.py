@@ -79,8 +79,6 @@ def save_group(group: Group):
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)
 
-    file_path = os.path.join(DATA_DIR, f"group_{group.getGroupName()}.pkl")
-    print("Saving group to: ", file_path)
-    print("CWD:", os.getcwd())
+    file_path = os.path.join(DATA_DIR, f"group_{group.getGroupID()}.pkl")
     with open(file_path, "wb") as f:
         pickle.dump(group, f)

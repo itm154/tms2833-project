@@ -9,10 +9,9 @@ def createGroup(authenticatedUser: Student):
     id = ui.numeric_input("Please enter Group ID: ")
 
     newGroup = Group(name, id, authenticatedUser.getUserName())
-    print("About to save")
     auth.save_group(newGroup)
-    print("Group saved successfully.")
     authenticatedUser.joinGroup(newGroup.getGroupName())
+    print("Group saved successfully.")
 
 
 def viewGroup(authenticatedUser: Student):

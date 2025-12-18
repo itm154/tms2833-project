@@ -17,6 +17,7 @@ def studentMenu(authenticatedUser):
                 # Student Joins a Group
             case 3:
                 groupManager.viewGroup(authenticatedUser)
+                # This function was used to test group adding only, can change the logic of the function to it's intended use.
                 # Student Views an Existing Group
             case 4:
                 # Logging out

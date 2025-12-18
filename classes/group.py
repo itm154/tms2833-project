@@ -10,5 +10,8 @@ class Group:
     def getGroupName(self):
         return self.__groupName
 
+    def getGroupID(self):
+        return self.__groupId
+
     def displayDetails(self):
         print(self.getGroupName())
