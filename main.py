@@ -1,5 +1,7 @@
 import auth
+import studentUI
 import ui
+from classes import Lecturer, Student
 
 
 def main():
@@ -21,8 +23,15 @@ def main():
                 return
 
     if user:
+        if isinstance(user, Student):
+            studentUI.studentMenu(user)
+        elif isinstance(user, Lecturer):
+            pass
+        else:
+            pass
         # Do things after authentication down here
         # Just an example
+        authenticated = False
         print(f"Authenticated user email: {user.getUserEmail()}")
 
 
