@@ -1,6 +1,7 @@
 import os
 import pickle
 
+import auth
 import ui
 from classes import Group, Student
 
@@ -14,9 +15,8 @@ def createGroup(authenticatedUser: Student):
 
     newGroup = Group(name, id, authenticatedUser.getUserName())
     save_group(newGroup)
-    authenticatedUser.joinGroup(
-        newGroup.getGroupID()
-    )  # This is likely per session only, need update student data
+    authenticatedUser.joinGroup(newGroup.getGroupID())
+    auth.save_user(authenticatedUser)
     print("Group saved successfully.")
 
 
