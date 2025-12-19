@@ -19,7 +19,12 @@ def createGroup(authenticatedUser: Student):
     joinGroup(authenticatedUser, newGroup.getGroupID())
 
 
-def joinGroup(authenticatedUser: Student, groupID):
+def joinGroup(authenticatedUser: Student, groupID: int):
+    # Loads the group and adds the student in it
+    temp_group = load_group(groupID)
+    temp_group.addMember(authenticatedUser.getUserName())
+    save_group(temp_group)
+    # Loads the student and updates student joined group list
     authenticatedUser.joinGroup(groupID)
     auth.save_user(authenticatedUser)
     print(f"{authenticatedUser.getUserName()} successfully enrolled in group.")
@@ -27,8 +32,10 @@ def joinGroup(authenticatedUser: Student, groupID):
 
 def viewGroup(groupID):
     tempGroup = load_group(groupID)
-    print(f"{tempGroup.getGroupName()} was loaded.")
-    return tempGroup
+    print(f"Group Name: {tempGroup.getGroupName()}")
+    print(f"Leader: {tempGroup.getGroupLeader()}")
+    ui.display_list("Members", tempGroup.getMemberList())
+    print("Tasks: ")
     # Can call task menu here and proceed with tasks handling
 
 
