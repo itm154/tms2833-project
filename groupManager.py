@@ -15,9 +15,14 @@ def createGroup(authenticatedUser: Student):
 
     newGroup = Group(name, id, authenticatedUser.getUserName())
     save_group(newGroup)
-    authenticatedUser.joinGroup(newGroup.getGroupID())
+    print("Group created successfully.")
+    joinGroup(authenticatedUser, newGroup.getGroupID())
+
+
+def joinGroup(authenticatedUser: Student, groupID):
+    authenticatedUser.joinGroup(groupID)
     auth.save_user(authenticatedUser)
-    print("Group saved successfully.")
+    print(f"{authenticatedUser.getUserName()} successfully enrolled in group.")
 
 
 def viewGroup(groupID):
@@ -36,7 +41,7 @@ def save_group(group: Group):
         pickle.dump(group, f)
 
 
-def load_group(groupID) -> Group | None:
+def load_group(groupID: int) -> Group | None:
     file_path = os.path.join(DATA_DIR, f"group_{groupID}.pkl")
     if os.path.exists(file_path):
         with open(file_path, "rb") as f:

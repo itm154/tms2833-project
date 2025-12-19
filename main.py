@@ -10,7 +10,7 @@ def main():
     while not authenticated:
         choice = ui.select(
             "Choose to Register or Login",
-            ["Register", "Log in as Student", "Exit"],
+            ["Register", "Log in", "Exit"],
         )
         match choice:
             case 1:

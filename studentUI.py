@@ -11,11 +11,13 @@ def studentMenu(authenticatedUser: Student):
         )
         match choice:
             case 1:
-                groupManager.createGroup(authenticatedUser)
                 # Student Creates a Group
+                groupManager.createGroup(authenticatedUser)
+
             case 2:
-                pass
                 # Student Joins a Group
+                groupID = ui.numeric_input("Please enter the ID of the group: ")
+                groupManager.joinGroup(authenticatedUser, groupID)
             case 3:
                 # Temporary lists used to fetch and display data
                 groupNames = []
