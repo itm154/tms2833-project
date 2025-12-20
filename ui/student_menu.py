@@ -14,7 +14,7 @@ def studentMenu(student: Student):
                 # Student Creates a Group
                 name = str(input("Please enter Group Name: "))
                 id = ui_components.numericInput("Please enter Group ID: ")
-                new_group, (group, message) = student.createGroup(name, id)
+                new_group, message = student.createGroup(name, id)
                 if new_group:
                     data_manager.saveGroup(new_group)
                     data_manager.saveUser(student)
@@ -52,7 +52,9 @@ def studentMenu(student: Student):
                         if isinstance(group_details, dict):
                             print(f"Group Name: {group_details['group_name']}")
                             print(f"Leader: {group_details['leader']}")
-                            ui_components.displayList("Members", group_details["members"])
+                            ui_components.displayList(
+                                "Members", group_details["members"]
+                            )
                             # TODO: we need a component to display tasks
                             # print("Tasks: ")
                         else:

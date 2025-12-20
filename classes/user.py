@@ -36,7 +36,7 @@ class Student(User):
         return self.__joined_groups
 
     def joinGroup(self, group_id: int):
-        from data_manager import group_manager
+        from data_manager import group_manager, user_manager
 
         # Loads the group and adds the student in it
         temp_group = group_manager.loadGroup(group_id)
@@ -51,8 +51,11 @@ class Student(User):
             )
 
         temp_group.addMember(self.getUserName())
+        group_manager.saveGroup(temp_group)
+
         # Loads the student and updates student joined group list
         self.__joined_groups.append(group_id)
+        user_manager.saveUser(self)
         return (
             temp_group,
             f"{self.getUserName()} successfully enrolled in group.",
@@ -60,9 +63,12 @@ class Student(User):
 
     def createGroup(self, group_name: str, group_id: int):
         from classes.group import Group
+        from data_manager import group_manager
 
         new_group = Group(group_name, group_id, self.getUserName())
-        return new_group, self.joinGroup(new_group.getGroupID())
+        group_manager.saveGroup(new_group)
+        joined_group, message = self.joinGroup(group_id)
+        return joined_group, f"Group created. {message}"
 
     def viewGroup(self, group_id: int):
         from data_manager import group_manager
