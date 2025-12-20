@@ -14,14 +14,8 @@ class User:
     def getUserEmail(self) -> str:
         return self.__userEmail
 
-    def setUserEmail(self, userEmail: str):
-        self.__userEmail = userEmail
-
     def getPassword(self) -> str:
         return self.__password
-
-    def setPassword(self, userPassword: str):
-        self.__password = userPassword
 
 
 class Student(User):
@@ -39,9 +33,61 @@ class Student(User):
     def getJoinedGroups(self) -> list:
         return self.__joinedGroups
 
-    def joinGroup(self, group):
-        self.__joinedGroups.append(group)
-        return
+    def joinGroup(self, groupID: int):
+        import groupManager
+        import auth
+
+        # Loads the group and adds the student in it
+        temp_group = groupManager.load_group(groupID)
+
+        if temp_group is None:
+            print("Group not found.")
+            return
+
+        if self.getUserName() in temp_group.getMemberList():
+            print(
+                f"{self.getUserName()} is already a member of {temp_group.getGroupName()}."
+            )
+            return
+
+        temp_group.addMember(self.getUserName())
+        groupManager.save_group(temp_group)
+        # Loads the student and updates student joined group list
+        self.__joinedGroups.append(groupID)
+        auth.save_user(self)
+        print(f"{self.getUserName()} successfully enrolled in group.")
+
+    def createGroup(self):
+        import ui
+        from classes.group import Group
+        import groupManager
+
+        # Prompt Group Details
+        name = str(input("Please enter Group Name: "))
+        id = ui.numeric_input("Please enter Group ID: ")
+
+        newGroup = Group(name, id, self.getUserName())
+        groupManager.save_group(newGroup)
+        print("Group created successfully.")
+        self.joinGroup(newGroup.getGroupID())
+
+    def viewGroup(self, groupID: int):
+        import groupManager
+        import ui
+
+        temp_group = groupManager.load_group(groupID)
+        if temp_group is None:
+            print("No groups available.")
+            return
+
+        if self.getUserName() not in temp_group.getMemberList():
+            print("You are not a member of this group.")
+            return
+
+        print(f"Group Name: {temp_group.getGroupName()}")
+        print(f"Leader: {temp_group.getGroupLeader()}")
+        ui.display_list("Members", temp_group.getMemberList())
+        print("Tasks: ")
 
 
 class Lecturer(User):

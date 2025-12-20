@@ -1,7 +1,8 @@
-import pickle
 import os
+import pickle
+
 import ui
-from classes import User, Student, Lecturer
+from classes import Lecturer, Student, User
 
 DATA_DIR = "data"
 
@@ -53,7 +54,6 @@ def login():
     if user and user.getPassword() == userPassword:
         print(f"Welcome, {user.getUserName()}!")
         return user
-        # Here you can add the logic for what happens after a successful login
     else:
         print("Invalid username or password.")
 

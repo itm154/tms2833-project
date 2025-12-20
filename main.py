@@ -1,6 +1,7 @@
-from classes import Lecturer, Student
-import ui
 import auth
+import studentUI
+import ui
+from classes import Lecturer, Student
 
 
 def main():
@@ -8,7 +9,8 @@ def main():
     authenticated = False
     while not authenticated:
         choice = ui.select(
-            "Choose to Register or Login", ["Register", "Log in", "Exit"]
+            "Choose to Register or Login",
+            ["Register", "Log in", "Exit"],
         )
         match choice:
             case 1:
@@ -21,9 +23,14 @@ def main():
                 return
 
     if user:
-        # Do things after authentication down here
-        # Just an example
-        print(f"Authenticated user email: {user.getUserEmail()}")
+        if isinstance(user, Student):
+            studentUI.studentMenu(user)
+        elif isinstance(user, Lecturer):
+            pass
+        else:
+            pass
+
+        authenticated = False
 
 
 if __name__ == "__main__":
