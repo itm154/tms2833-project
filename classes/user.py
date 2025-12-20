@@ -55,7 +55,7 @@ class Student(User):
         # Loads the student and updates student joined group list
         self.__joinedGroups.append(groupID)
         auth.save_user(self)
-        print(f"{self.__userName} successfully enrolled in group.")
+        print(f"{self.getUserName()} successfully enrolled in group.")
 
     def createGroup(self):
         import ui
