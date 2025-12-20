@@ -36,54 +36,50 @@ class Student(User):
         return self.__joined_groups
 
     def joinGroup(self, group_id: int):
-        from data_manager import user_manager, group_manager
+        from data_manager import group_manager
 
         # Loads the group and adds the student in it
         temp_group = group_manager.loadGroup(group_id)
 
         if temp_group is None:
-            print("Group not found.")
-            return
+            return None, "Group not found."
 
         if self.getUserName() in temp_group.getMemberList():
-            print(
-                f"{self.getUserName()} is already a member of {temp_group.getGroupName()}."
+            return (
+                None,
+                f"{self.getUserName()} is already a member of {temp_group.getGroupName()}.",
             )
-            return
 
         temp_group.addMember(self.getUserName())
-        group_manager.saveGroup(temp_group)
         # Loads the student and updates student joined group list
         self.__joined_groups.append(group_id)
-        user_manager.saveUser(self)
-        print(f"{self.getUserName()} successfully enrolled in group.")
+        return (
+            temp_group,
+            f"{self.getUserName()} successfully enrolled in group.",
+        )
 
     def createGroup(self, group_name: str, group_id: int):
-        from data_manager import group_manager
         from classes.group import Group
 
         new_group = Group(group_name, group_id, self.getUserName())
-        group_manager.saveGroup(new_group)
-        print("Group created successfully.")
-        self.joinGroup(new_group.getGroupID())
+        return new_group, self.joinGroup(new_group.getGroupID())
 
     def viewGroup(self, group_id: int):
         from data_manager import group_manager
-        import ui_components
 
         temp_group = group_manager.loadGroup(group_id)
         if temp_group is None:
-            print("No groups available.")
-            return
+            return "No groups available."
 
         if self.getUserName() not in temp_group.getMemberList():
-            print("You are not a member of this group.")
-            return
+            return "You are not a member of this group."
 
-        print(f"Group Name: {temp_group.getGroupName()}")
-        print(f"Leader: {temp_group.getGroupLeader()}")
-        ui_components.displayList("Members", temp_group.getMemberList())
-        print("Tasks: ")
+        return {
+            "group_name": temp_group.getGroupName(),
+            "leader": temp_group.getGroupLeader(),
+            "members": temp_group.getMemberList(),
+            "tasks": temp_group.getTasks(),
+        }
 
 
 class Lecturer(User):

@@ -14,14 +14,22 @@ def studentMenu(student: Student):
                 # Student Creates a Group
                 name = str(input("Please enter Group Name: "))
                 id = ui_components.numericInput("Please enter Group ID: ")
-                student.createGroup(name, id)
+                new_group, (group, message) = student.createGroup(name, id)
+                if new_group:
+                    data_manager.saveGroup(new_group)
+                    data_manager.saveUser(student)
+                print(message)
 
             case 2:
                 # Student Joins a Group
                 group_id = ui_components.numericInput(
                     "Please enter the ID of the group: "
                 )
-                student.joinGroup(group_id)
+                group, message = student.joinGroup(group_id)
+                if group:
+                    data_manager.saveGroup(group)
+                    data_manager.saveUser(student)
+                print(message)
             case 3:
                 joined_groups = student.getJoinedGroups()
                 if not joined_groups:
@@ -40,7 +48,15 @@ def studentMenu(student: Student):
                     )
 
                     if id_list:
-                        student.viewGroup(id_list[selected_group - 1])
+                        group_details = student.viewGroup(id_list[selected_group - 1])
+                        if isinstance(group_details, dict):
+                            print(f"Group Name: {group_details['group_name']}")
+                            print(f"Leader: {group_details['leader']}")
+                            ui_components.displayList("Members", group_details["members"])
+                            # TODO: we need a component to display tasks
+                            # print("Tasks: ")
+                        else:
+                            print(group_details)
             case 4:
                 # Logging out
                 break
