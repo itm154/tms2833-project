@@ -22,6 +22,17 @@ def createGroup(authenticatedUser: Student):
 def joinGroup(authenticatedUser: Student, groupID: int):
     # Loads the group and adds the student in it
     temp_group = load_group(groupID)
+
+    if temp_group is None:
+        print("Group not found.")
+        return
+
+    if authenticatedUser.getUserName() in temp_group.getMemberList():
+        print(
+            f"{authenticatedUser.getUserName()} is already a member of {temp_group.getGroupName()}."
+        )
+        return
+
     temp_group.addMember(authenticatedUser.getUserName())
     save_group(temp_group)
     # Loads the student and updates student joined group list
@@ -30,13 +41,20 @@ def joinGroup(authenticatedUser: Student, groupID: int):
     print(f"{authenticatedUser.getUserName()} successfully enrolled in group.")
 
 
-def viewGroup(groupID):
-    tempGroup = load_group(groupID)
-    print(f"Group Name: {tempGroup.getGroupName()}")
-    print(f"Leader: {tempGroup.getGroupLeader()}")
-    ui.display_list("Members", tempGroup.getMemberList())
+def viewGroup(authenticatedUser: Student, groupID: int):
+    temp_group = load_group(groupID)
+    if temp_group is None:
+        print("No groups available.")
+        return
+
+    if authenticatedUser.getUserName() not in temp_group.getMemberList():
+        print("You are not a member of this group.")
+        return
+
+    print(f"Group Name: {temp_group.getGroupName()}")
+    print(f"Leader: {temp_group.getGroupLeader()}")
+    ui.display_list("Members", temp_group.getMemberList())
     print("Tasks: ")
-    # Can call task menu here and proceed with tasks handling
 
 
 def save_group(group: Group):

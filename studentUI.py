@@ -32,7 +32,7 @@ def studentMenu(authenticatedUser: Student):
                     "Please Select the Group you wish to visit", groupNames
                 )
 
-                groupManager.viewGroup(id_list[selected_group - 1])
+                groupManager.viewGroup(authenticatedUser, id_list[selected_group - 1])
 
                 # This function was used to test group adding only, can change the logic of the function to it's intended use.
                 # Student Views an Existing Group

@@ -29,10 +29,8 @@ def main():
             pass
         else:
             pass
-        # Do things after authentication down here
-        # Just an example
+
         authenticated = False
-        print(f"Authenticated user email: {user.getUserEmail()}")
 
 
 if __name__ == "__main__":
