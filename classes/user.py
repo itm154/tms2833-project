@@ -1,44 +1,45 @@
 class User:
-    def __init__(self, userName: str, userID: int, userEmail: str, userPassword: str):
-        self.__userName = userName
-        self.__userID = userID
-        self.__userEmail = userEmail
-        self.__password = userPassword
+    def __init__(
+        self, user_name: str, user_id: int, user_email: str, user_password: str
+    ):
+        self.__user_name = user_name
+        self.__user_id = user_id
+        self.__user_email = user_email
+        self.__user_password = user_password
 
     def getUserName(self) -> str:
-        return self.__userName
+        return self.__user_name
 
     def getUserID(self) -> int:
-        return self.__userID
+        return self.__user_id
 
     def getUserEmail(self) -> str:
-        return self.__userEmail
+        return self.__user_email
 
     def getPassword(self) -> str:
-        return self.__password
+        return self.__user_password
 
 
 class Student(User):
     def __init__(
         self,
-        userName: str,
-        matricNumber: int,
-        userEmail: str,
-        userPassword: str,
-        joinedGroups: list,
+        user_name: str,
+        matric_number: int,
+        user_email: str,
+        user_password: str,
+        joined_groups: list,
     ):
-        super().__init__(userName, matricNumber, userEmail, userPassword)
-        self.__joinedGroups = [] if joinedGroups is None else joinedGroups
+        super().__init__(user_name, matric_number, user_email, user_password)
+        self.__joined_groups = [] if joined_groups is None else joined_groups
 
     def getJoinedGroups(self) -> list:
-        return self.__joinedGroups
+        return self.__joined_groups
 
-    def joinGroup(self, groupID: int):
-        import groupManager
-        import auth
+    def joinGroup(self, group_id: int):
+        from data_manager import user_manager, group_manager
 
         # Loads the group and adds the student in it
-        temp_group = groupManager.load_group(groupID)
+        temp_group = group_manager.loadGroup(group_id)
 
         if temp_group is None:
             print("Group not found.")
@@ -51,31 +52,26 @@ class Student(User):
             return
 
         temp_group.addMember(self.getUserName())
-        groupManager.save_group(temp_group)
+        group_manager.saveGroup(temp_group)
         # Loads the student and updates student joined group list
-        self.__joinedGroups.append(groupID)
-        auth.save_user(self)
+        self.__joined_groups.append(group_id)
+        user_manager.saveUser(self)
         print(f"{self.getUserName()} successfully enrolled in group.")
 
-    def createGroup(self):
-        import ui
+    def createGroup(self, group_name: str, group_id: int):
+        from data_manager import group_manager
         from classes.group import Group
-        import groupManager
 
-        # Prompt Group Details
-        name = str(input("Please enter Group Name: "))
-        id = ui.numeric_input("Please enter Group ID: ")
-
-        newGroup = Group(name, id, self.getUserName())
-        groupManager.save_group(newGroup)
+        new_group = Group(group_name, group_id, self.getUserName())
+        group_manager.saveGroup(new_group)
         print("Group created successfully.")
-        self.joinGroup(newGroup.getGroupID())
+        self.joinGroup(new_group.getGroupID())
 
-    def viewGroup(self, groupID: int):
-        import groupManager
-        import ui
+    def viewGroup(self, group_id: int):
+        from data_manager import group_manager
+        import ui_components
 
-        temp_group = groupManager.load_group(groupID)
+        temp_group = group_manager.loadGroup(group_id)
         if temp_group is None:
             print("No groups available.")
             return
@@ -86,18 +82,18 @@ class Student(User):
 
         print(f"Group Name: {temp_group.getGroupName()}")
         print(f"Leader: {temp_group.getGroupLeader()}")
-        ui.display_list("Members", temp_group.getMemberList())
+        ui_components.displayList("Members", temp_group.getMemberList())
         print("Tasks: ")
 
 
 class Lecturer(User):
     def __init__(
-        self, userName, userID, userEmail, password, office, faculty, courseID
+        self, user_name, staff_id, user_email, user_password, office, faculty, course_id
     ):
-        super().__init__(userName, userID, userEmail, password)
+        super().__init__(user_name, staff_id, user_email, user_password)
         self.__office = office
         self.__faculty = faculty
-        self.__courseID = courseID
+        self.__course_id = course_id
 
     def viewProgress():
         pass

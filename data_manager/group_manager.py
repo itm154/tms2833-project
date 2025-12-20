@@ -5,7 +5,7 @@ import os
 DATA_DIR = "data"
 
 
-def save_group(group: Group):
+def saveGroup(group: Group):
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)
 
@@ -14,8 +14,8 @@ def save_group(group: Group):
         pickle.dump(group, f)
 
 
-def load_group(groupID: int) -> Group | None:
-    file_path = os.path.join(DATA_DIR, f"group_{groupID}.pkl")
+def loadGroup(group_id: int) -> Group | None:
+    file_path = os.path.join(DATA_DIR, f"group_{group_id}.pkl")
     if os.path.exists(file_path):
         with open(file_path, "rb") as f:
             return pickle.load(f)

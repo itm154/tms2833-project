@@ -4,7 +4,7 @@ from .user import User
 class Task:
     def __init__(
         self,
-        taskID: int,
+        task_id: int,
         title: str,
         description: str,
         deadline: str,
@@ -12,7 +12,7 @@ class Task:
         status: str = "To Do",
         assignee: User | None = None,
     ):
-        self.__taskID = taskID
+        self.__task_id = task_id
         self.__title = title
         self.__description = description
         self.__deadline = deadline
@@ -23,8 +23,8 @@ class Task:
     def createTask(self):
         print(f"Task '{self.__title}' created.")
 
-    def updateStatus(self, newStatus: str):
-        self.__status = newStatus
+    def updateStatus(self, new_status: str):
+        self.__status = new_status
         print(f"Task status updated to '{self.__status}'.")
 
     def assignTo(self, user: User):
@@ -33,20 +33,20 @@ class Task:
 
     def editTask(
         self,
-        newTitle: str,
-        newDesc: str,
-        newDeadline: str,
-        newPriority: int,
+        new_title: str,
+        new_desc: str,
+        new_deadline: str,
+        new_priority: int,
     ):
-        self.__title = newTitle
-        self.__description = newDesc
-        self.__deadline = newDeadline
-        self.__priority = newPriority
+        self.__title = new_title
+        self.__description = new_desc
+        self.__deadline = new_deadline
+        self.__priority = new_priority
         print("Task updated successfully.")
 
     def displayTaskInfo(self):
         print("=== Task Info ===")
-        print(f"Task ID: {self.__taskID}")
+        print(f"Task ID: {self.__task_id}")
         print(f"Title: {self.__title}")
         print(f"Description: {self.__description}")
         print(f"Deadline: {self.__deadline}")

@@ -8,7 +8,7 @@
 
 
 def select(title: str, options: list[str]) -> int:
-    titlebar = f"--- {title} ---"
+    titlebar = f"\n--- {title} ---"
     print(titlebar)
     for i, option in enumerate(options):
         print(f"{i + 1}. {option}")

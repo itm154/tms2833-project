@@ -3,7 +3,7 @@
 # ui.display_list("Title", somelist)
 
 
-def display_list(title: str, items: list):
+def displayList(title: str, items: list):
     titlebar = f"--- {title} ---"
     closing_line = "-" * len(titlebar)
     print(titlebar)
@@ -18,7 +18,7 @@ def display_list(title: str, items: list):
     print()
 
 
-def display_numbered_list(title: str, items: list):
+def displayNumberedList(title: str, items: list):
     titlebar = f"--- {title} ---"
     closing_line = "-" * len(titlebar)
     print(titlebar)
