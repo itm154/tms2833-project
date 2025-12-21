@@ -1,6 +1,42 @@
 import data_manager
 import ui_components
-from classes import Student
+from classes import Student, Task
+
+
+def groupMenuCreateTask(group_id: int):
+    group = data_manager.loadGroup(group_id)
+    if not group:
+        print("Group not found.")
+        return
+
+    while True:
+        choice = ui_components.select(
+            "Group Menu",
+            ["Add Task", "Back"],
+        )
+
+        match choice:
+            case 1:
+                task_id = ui_components.numericInput("Task ID: ")
+                title = input("Title: ")
+                description = input("Description: ")
+                deadline = input("Deadline: ")
+                priority = ui_components.numericInput("Priority (1-5): ")
+
+                task = Task(
+                    task_id,
+                    title,
+                    description,
+                    deadline,
+                    priority,
+                )
+
+                group.addTasks(task)
+                data_manager.saveGroup(group)
+                print("Task created successfully.")
+
+            case 2:
+                break
 
 
 def studentMenu(student: Student):
@@ -57,6 +93,7 @@ def studentMenu(student: Student):
                             )
                             # TODO: we need a component to display tasks
                             # print("Tasks: ")
+                            groupMenuCreateTask(id_list[selected_group - 1])
                         else:
                             print(group_details)
             case 4:
