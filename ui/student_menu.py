@@ -12,11 +12,12 @@ def groupMenuCreateTask(group_id: int):
     while True:
         choice = ui_components.select(
             "Group Menu",
-            ["Add Task", "Back"],
+            ["Add Task", "View Tasks", "Back"],
         )
 
         match choice:
             case 1:
+                # Create Task
                 task_id = ui_components.numericInput("Task ID: ")
                 title = input("Title: ")
                 description = input("Description: ")
@@ -36,6 +37,17 @@ def groupMenuCreateTask(group_id: int):
                 print("Task created successfully.")
 
             case 2:
+                # READ (list)
+                tasks = group.getTasks()
+                if not tasks:
+                    print("No tasks in this group yet.")
+                else:
+                    print("\n=== Task List ===")
+                    for t in tasks:
+                        t.displayTaskInfo()
+                        print("----------------")
+
+            case 3:
                 break
 
 
