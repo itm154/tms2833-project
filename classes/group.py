@@ -1,17 +1,17 @@
 class Group:
-    def __init__(self, groupName: str, groupId: int, leader):
-        self.__groupName = groupName
-        self.__groupId = groupId
+    def __init__(self, group_name: str, group_id: int, leader):
+        self.__group_name = group_name
+        self.__group_rn = group_id
         # Members should be only the leader after creation for now
         self.__members = []
         self.__leader = leader
         self.__tasks = []
 
     def getGroupName(self):
-        return self.__groupName
+        return self.__group_name
 
     def getGroupID(self):
-        return self.__groupId
+        return self.__group_rn
 
     def getGroupLeader(self):
         return self.__leader
