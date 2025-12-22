@@ -1,79 +1,20 @@
 import data_manager
+import ui
 import ui_components
-from classes import Student, Task
-
-
-def _task_menu(student: Student):
-    joined_groups = student.getJoinedGroups()
-    if not joined_groups:
-        print("You are not part of any group.")
-        return
-
-    group_names = []
-    id_list = []
-
-    for group_id in joined_groups:
-        temp_group = data_manager.loadGroup(group_id)
-        if temp_group:
-            group_names.append(temp_group.getGroupName())
-            id_list.append(group_id)
-
-    if not id_list:
-        print("No groups found.")
-        return
-
-    selected_index = ui_components.select(
-        "Please Select the Group you wish to visit",
-        group_names,
-    )
-    group_id = id_list[selected_index - 1]
-
-    group = data_manager.loadGroup(group_id)
-    if not group:
-        print("Group not found.")
-        return
-
-    while True:
-        choice = ui_components.select(
-            "Task Menu",
-            ["Add Task", "View Tasks", "Edit Task", "Delete Task", "Back"],
-        )
-
-        match choice:
-            case 1:
-                # Add Task
-                task_id = ui_components.numericInput("Task ID: ")
-                title = input("Title: ")
-                description = input("Description: ")
-                deadline = input("Deadline: ")
-                priority = ui_components.numericInput("Priority (1-5): ")
-
-                new_task = Task(task_id, title, description, deadline, priority)
-
-                group.addTasks(new_task)
-                data_manager.saveGroup(group)
-                print("Task created successfully.")
-
-            case 2:
-                # View Tasks
-                tasks = group.getTasks()
-                if not tasks:
-                    print("No tasks in this group yet.")
-                else:
-                    for t in tasks:
-                        t.displayTaskInfo()
-
-                    print("----------------")
-
-            case 3:
-                pass
+from classes import Student
 
 
 def studentMenu(student: Student):
     while True:
         choice = ui_components.select(
             "Please Select An Action",
-            ["Create Group", "Join Group", "View Group", "Task Menu", "Log Out"],
+            [
+                "Create Group",
+                "Join Group",
+                "View Group",
+                "View My Information",
+                "Log Out",
+            ],
         )
         match choice:
             case 1:
@@ -101,32 +42,33 @@ def studentMenu(student: Student):
                 if not joined_groups:
                     print("You are not part of any group.")
                 else:
-                    # Temporary lists used to fetch and display data
                     group_names = []
                     id_list = []
-                    for group_id in joined_groups:
-                        temp_group = data_manager.loadGroup(group_id)
-                        if temp_group:
-                            group_names.append(temp_group.getGroupName())
-                            id_list.append(group_id)
-                    selected_group = ui_components.select(
-                        "Please Select the Group you wish to visit", group_names
-                    )
+                for group_id in joined_groups:
+                    temp_group = data_manager.loadGroup(group_id)
+                    if temp_group:
+                        group_names.append(temp_group.getGroupName())
+                        id_list.append(group_id)
+                        selected_index = ui_components.select(
+                            "Please Select the Group you wish to visit", group_names
+                        )
 
-                    if id_list:
-                        group_details = student.viewGroup(id_list[selected_group - 1])
-                        if isinstance(group_details, dict):
-                            print(f"Group Name: {group_details['group_name']}")
-                            print(f"Leader: {group_details['leader']}")
-                            ui_components.displayList(
-                                "Members", group_details["members"]
-                            )
-                            # TODO: we need a component to display tasks
-                            # print("Tasks: ")
-                        else:
-                            print(group_details)
+                if id_list:
+                    selected_group = data_manager.loadGroup(id_list[selected_index - 1])
+                    group_details = student.viewGroup(id_list[selected_index - 1])
+                    if isinstance(group_details, dict):
+                        print(f"Group Name: {group_details['group_name']}")
+                        print(f"Leader: {group_details['leader']}")
+                        ui_components.displayList("Members", group_details["members"])
+                        # TODO: we need a component to display tasks #Done.
+                        ui.taskMenu(selected_group)
+                else:
+                    # Changing this print(group_details) into an error message since it's not supposed to be printing group details anymore
+                    # print(group_details)
+                    print("An error had occured!, please try again.")
+
             case 4:
-                _task_menu(student)
+                ui_components.displayDict("My information", student.getInfo())
 
             case 5:
                 # Logging out
