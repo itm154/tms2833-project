@@ -16,7 +16,7 @@ def lecturerMenu(lecturer: Lecturer):
             ],
         )
         match choice:
-            case 1:
+            case 1:  # Generate group report
                 groups = group_manager.loadAllGroups()
                 if not groups:
                     print("No groups available to generate report.")
@@ -35,9 +35,9 @@ def lecturerMenu(lecturer: Lecturer):
                     )
                 else:
                     print(report)
-            case 2:
+            case 2:  # View group
                 pass
-            case 3:
+            case 3:  # View my information
                 pass
                 ui_components.displayDict("My information", lecturer.getInfo())
             case 4:
