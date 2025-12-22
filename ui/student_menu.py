@@ -8,7 +8,13 @@ def studentMenu(student: Student):
     while True:
         choice = ui_components.select(
             "Please Select An Action",
-            ["Create Group", "Join Group", "View Group", "Log Out"],
+            [
+                "Create Group",
+                "Join Group",
+                "View Group",
+                "View My Information",
+                "Log Out",
+            ],
         )
         match choice:
             case 1:
@@ -62,5 +68,8 @@ def studentMenu(student: Student):
                     print("An error had occured!, please try again.")
 
             case 4:
+                ui_components.displayDict("My information", student.getInfo())
+
+            case 5:
                 # Logging out
                 break
