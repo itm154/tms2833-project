@@ -161,14 +161,14 @@ class Lecturer(User):
 
         temp_group = group_manager.loadGroup(group_id)
         if temp_group is None:
-            return "No groups available.Report cannot be Generated!"
+            return "Group not available. Report cannot be Generated!"
 
         tasks = temp_group.getTasks()
         total_tasks = len(tasks)
         completed = sum(1 for task in tasks if task.get("status") == "Completed")
 
         report = {
-            "report_id": report_id,
+            "Report ID": report_id,
             "Generated Date": datetime.now(),
             "Total tasks": total_tasks,
             "Completed tasks": completed,
