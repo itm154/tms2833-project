@@ -138,8 +138,17 @@ class Lecturer(User):
             "tasks": temp_group.getTasks(),
         }
 
-    def generateReport():
-        pass
+    def generateReport(self, group_id: int):
+       from data_manager import group_manager
+       from classes.report import Report
+       from datetime import datetime
+        
+        temp_group = group_manager.loadGroup(group_id)
+        if temp_group is None:
+            return "No groups available."
+
+        report = Report(group_id, datetime.now(), temp_group)
+        return report.generateReport()
 
     def giveComments():
         pass
