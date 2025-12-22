@@ -1,9 +1,33 @@
 import data_manager
 import ui_components
-from classes import Student, Task
+from classes import Student
 
 
-def groupMenuCreateTask(group_id: int):
+def _task_menu(student: Student):
+    joined_groups = student.getJoinedGroups()
+    if not joined_groups:
+        print("You are not part of any group.")
+        return
+
+    group_names = []
+    id_list = []
+
+    for group_id in joined_groups:
+        temp_group = data_manager.loadGroup(group_id)
+        if temp_group:
+            group_names.append(temp_group.getGroupName())
+            id_list.append(group_id)
+
+    if not id_list:
+        print("No groups found.")
+        return
+
+    selected_index = ui_components.select(
+        "Please Select the Group you wish to visit",
+        group_names,
+    )
+    group_id = id_list[selected_index - 1]
+
     group = data_manager.loadGroup(group_id)
     if not group:
         print("Group not found.")
@@ -11,51 +35,20 @@ def groupMenuCreateTask(group_id: int):
 
     while True:
         choice = ui_components.select(
-            "Group Menu",
-            ["Add Task", "View Tasks", "Back"],
+            "Task Menu",
+            ["Add Task", "View Tasks", "Edit Task", "Delete Task", "Back"],
         )
 
         match choice:
             case 1:
-                # Create Task
-                task_id = ui_components.numericInput("Task ID: ")
-                title = input("Title: ")
-                description = input("Description: ")
-                deadline = input("Deadline: ")
-                priority = ui_components.numericInput("Priority (1-5): ")
-
-                task = Task(
-                    task_id,
-                    title,
-                    description,
-                    deadline,
-                    priority,
-                )
-
-                group.addTasks(task)
-                data_manager.saveGroup(group)
-                print("Task created successfully.")
-
-            case 2:
-                # READ (list)
-                tasks = group.getTasks()
-                if not tasks:
-                    print("No tasks in this group yet.")
-                else:
-                    print("\n=== Task List ===")
-                    for t in tasks:
-                        t.displayTaskInfo()
-                        print("----------------")
-
-            case 3:
-                break
+                pass
 
 
 def studentMenu(student: Student):
     while True:
         choice = ui_components.select(
             "Please Select An Action",
-            ["Create Group", "Join Group", "View Group", "Log Out"],
+            ["Create Group", "Join Group", "View Group", "Task Menu", "Log Out"],
         )
         match choice:
             case 1:
@@ -105,9 +98,11 @@ def studentMenu(student: Student):
                             )
                             # TODO: we need a component to display tasks
                             # print("Tasks: ")
-                            groupMenuCreateTask(id_list[selected_group - 1])
                         else:
                             print(group_details)
             case 4:
+                _task_menu(student)
+
+            case 5:
                 # Logging out
                 break
