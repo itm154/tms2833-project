@@ -60,5 +60,8 @@ def studentMenu(student: Student):
                         else:
                             print(group_details)
             case 4:
+                ui_components.displayDict("My information", student.getInfo())
+
+            case 5:
                 # Logging out
                 break

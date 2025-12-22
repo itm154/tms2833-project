@@ -4,7 +4,7 @@
 
 
 def displayList(title: str, items: list):
-    titlebar = f"--- {title} ---"
+    titlebar = f"\n--- {title} ---"
     closing_line = "-" * len(titlebar)
     print(titlebar)
 
@@ -19,7 +19,7 @@ def displayList(title: str, items: list):
 
 
 def displayNumberedList(title: str, items: list):
-    titlebar = f"--- {title} ---"
+    titlebar = f"\n--- {title} ---"
     closing_line = "-" * len(titlebar)
     print(titlebar)
 
@@ -29,5 +29,20 @@ def displayNumberedList(title: str, items: list):
 
     for i, item in enumerate(items):
         print(f"{i + 1}. {item}")
+    print(closing_line)
+    print()
+
+
+def displayDict(title: str, data: dict):
+    titlebar = f"\n--- {title} ---"
+    closing_line = "-" * len(titlebar)
+    print(titlebar)
+
+    if not data:
+        print("No entries")
+        return
+
+    for key, value in data.items():
+        print(f"{key}: {value}")
     print(closing_line)
     print()
