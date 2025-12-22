@@ -1,7 +1,5 @@
 from datetime import datetime
-
 from .user import User
-
 
 class Notification:
     counter = 1
@@ -18,12 +16,18 @@ class Notification:
 
     def markAsRead(self):
         self.__is_read = True
-        print("The notification has been marked as read.")
-        pass
+        return "The notification has been marked as read."
 
     def display(self):
-        print(self.__message)
-        pass
-
+        status = "Read" if self._is_read else "Not read"
+        return (
+            f"---Notification---\n"
+            f"Id      : {self.__notification_id}\n"
+            f"Type    : {self.__type}\n"
+            f"Message : {self.__message}\n"
+            f"Date    : {self._generated_date}\n"
+            f"Status  : {status}\n"
+        )
+        
     def sendTo(self, userid):
         pass
