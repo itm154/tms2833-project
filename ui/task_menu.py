@@ -25,5 +25,15 @@ def taskMenu(group: Group):
                 data_manager.saveGroup(group)
                 print("Task created successfully.")
 
+                # View Task
             case 2:
-                break
+                tasks = group.getTasks()
+
+                if not tasks:
+                    print("No tasks in this group yet.")
+                else:
+                    print("\n=== Task List ===")
+                    for t in tasks:
+                        t.displayTaskInfo()
+
+            case 3:
