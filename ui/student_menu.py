@@ -48,14 +48,25 @@ def _task_menu(student: Student):
                 deadline = input("Deadline: ")
                 priority = ui_components.numericInput("Priority (1-5): ")
 
-                task = Task(task_id, title, description, deadline, priority)
+                new_task = Task(task_id, title, description, deadline, priority)
 
-                group.addTasks(task)
+                group.addTasks(new_task)
                 data_manager.saveGroup(group)
                 print("Task created successfully.")
 
             case 2:
-                break
+                # View Tasks
+                tasks = group.getTasks()
+                if not tasks:
+                    print("No tasks in this group yet.")
+                else:
+                    for t in tasks:
+                        t.displayTaskInfo()
+
+                    print("----------------")
+
+            case 3:
+                pass
 
 
 def studentMenu(student: Student):
