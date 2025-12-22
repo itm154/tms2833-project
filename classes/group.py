@@ -24,3 +24,6 @@ class Group:
 
     def addMember(self, new_member):
         self.__members.append(new_member)
+
+    def getTasks(self):
+        return self.__tasks
