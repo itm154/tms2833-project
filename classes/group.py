@@ -30,3 +30,9 @@ class Group:
 
     def getTasks(self):
         return self.__tasks
+
+    def getTaskById(self, task_id):
+        for t in self.__tasks:
+            if t.getTaskId() == task_id:
+                return t
+        return None

@@ -20,10 +20,9 @@ def taskMenu(group: Group):
                 priority = ui_components.numericInput("Priority (1-5): ")
 
                 task = Task(task_id, title, description, deadline, priority)
-
+                task.createTask()
                 group.addTasks(task)
                 data_manager.saveGroup(group)
-                print("Task created successfully.")
 
                 # View Task
             case 2:
@@ -32,8 +31,30 @@ def taskMenu(group: Group):
                 if not tasks:
                     print("No tasks in this group yet.")
                 else:
-                    print("\n=== Task List ===")
                     for t in tasks:
                         t.displayTaskInfo()
 
+                # Edit Task
             case 3:
+                task_id = ui_components.numericInput("Enter Task ID to edit: ")
+                task = group.getTaskById(task_id)
+
+                if task is None:
+                    print("Task not found.")
+                else:
+                    print("\nEditing Task:")
+                    task.displayTaskInfo()
+                    new_title = input("New Title: ")
+                    new_desc = input("New Description: ")
+                    new_deadline = input("New Deadline: ")
+                    new_priority = ui_components.numericInput("New Priority (1-5): ")
+
+                    task.editTask(new_title, new_desc, new_deadline, new_priority)
+                    data_manager.saveGroup(group)
+                    print("Task updated successfully.")
+
+            case 4:
+                pass
+
+            case 5:
+                break

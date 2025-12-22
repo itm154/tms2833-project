@@ -42,7 +42,9 @@ class Task:
         self.__description = new_desc
         self.__deadline = new_deadline
         self.__priority = new_priority
-        print("Task updated successfully.")
+
+    def getTaskId(self):
+        return self.__task_id
 
     def displayTaskInfo(self):
         print("=== Task Info ===")
