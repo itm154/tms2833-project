@@ -19,6 +19,13 @@ class User:
     def getPassword(self) -> str:
         return self.__user_password
 
+    def getInfo(self) -> dict:
+        return {
+            "Username": self.__user_name,
+            "ID": self.__user_id,
+            "Email": self.__user_email,
+        }
+
 
 class Student(User):
     def __init__(
@@ -34,6 +41,15 @@ class Student(User):
 
     def getJoinedGroups(self) -> list:
         return self.__joined_groups
+
+    def getInfo(self) -> dict:
+        info = super().getInfo()
+
+        # Rename "ID" to matric number
+        info["Matric Number"] = info.pop("ID")
+        info["Joined Groups"] = self.getJoinedGroups()
+
+        return info
 
     def joinGroup(self, group_id: int):
         from data_manager import group_manager, user_manager
@@ -97,8 +113,30 @@ class Lecturer(User):
         self.__faculty = faculty
         self.__course_id = course_id
 
-    def viewProgress():
-        pass
+    def getInfo(self) -> dict:
+        info = super().getInfo()
+
+        # Rename "ID" to "Staff ID"
+        info["Staff ID"] = info.pop("ID")
+        info["Faculty"] = self.__faculty
+        info["Office"] = self.__office
+        info["Course"] = self.__course_id
+
+        return info
+
+    def viewGroup(self, group_id: int):
+        from data_manager import group_manager
+
+        temp_group = group_manager.loadGroup(group_id)
+        if temp_group is None:
+            return "No groups available."
+
+        return {
+            "group_name": temp_group.getGroupName(),
+            "leader": temp_group.getGroupLeader(),
+            "members": temp_group.getMemberList(),
+            "tasks": temp_group.getTasks(),
+        }
 
     def generateReport():
         pass
