@@ -19,13 +19,7 @@ class Report:
             "Completed tasks": self.calculateCompletionRate(),
         }
 
-    def generateMemberReport(self, user: User):
-        print("=== Member Report ===")
-        print(f"Report ID: {self.__report_id}")
-        print(f"Generated Date: {self.__generated_date}")
-        print(f"Member: {user.__user_name}")
-
-    def calculateCompletionRate(self):
+    def calculateCompletionRate(self) -> float:
         if self.__total_tasks == 0:
             rate = 0.0
         else:
@@ -33,10 +27,3 @@ class Report:
 
         print(f"Completion Rate: {rate:.2f}%")
         return rate
-
-    def displayReport(self):
-        print("=== Report Info ===")
-        print(f"Report ID: {self.__report_id}")
-        print(f"Generated Date: {self.__generated_date}")
-        print(f"Total Tasks: {self.__total_tasks}")
-        print(f"Completed Tasks: {self.__completed_tasks}")
