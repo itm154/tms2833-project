@@ -1,3 +1,6 @@
+from random import randint
+
+
 class User:
     def __init__(
         self, user_name: str, user_id: int, user_email: str, user_password: str
@@ -138,8 +141,16 @@ class Lecturer(User):
             "tasks": temp_group.getTasks(),
         }
 
-    def generateReport():
-        pass
+    def generateReport(self, group_id: int):
+        from data_manager import group_manager
+        from classes.report import Report
 
-    def giveComments():
-        pass
+        temp_group = group_manager.loadGroup(group_id)
+        if temp_group is None:
+            return "No groups available."
+
+        report = Report(randint(100000, 999999), temp_group).getReport()
+        return report
+
+    def giveComments(self, group_id: int, task: str, comment: str):
+        return f"Lecturer {self.getUserName()} comments on task {task} : {comment}"

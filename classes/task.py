@@ -44,7 +44,7 @@ class Task:
         return self.__task_id
 
     def displayTaskInfo(self):
-        print("=== Task Info ===")
+        print("\n=== Task Info ===")
         print(f"Task ID: {self.__task_id}")
         print(f"Title: {self.__title}")
         print(f"Description: {self.__description}")

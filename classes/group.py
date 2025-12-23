@@ -19,9 +19,6 @@ class Group:
     def getMemberList(self):
         return self.__members
 
-    def displayDetails(self):
-        print(self.getGroupName())
-
     def addMember(self, new_member):
         self.__members.append(new_member)
 
