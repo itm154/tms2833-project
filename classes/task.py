@@ -16,17 +16,17 @@ class Task:
         self.__title = title
         self.__description = description
         self.__deadline = deadline
-        self.__priority = priority
+        self.__priority = min(priority, 5)  # Since numeric input is unbounded.
         self.__status = status
         self.__assignee = assignee
 
     def updateStatus(self, new_status: str):
         self.__status = new_status
-        print(f"Task status updated to '{self.__status}'.")
+        return f"Task status updated to '{self.__status}'."
 
-    def assignTo(self, user: User):
+    def assignTo(self, user: str):
         self.__assignee = user
-        print(f"Task assigned to {user}.")
+        return f"Task assigned to {user}."
 
     def editTask(
         self,
@@ -40,16 +40,16 @@ class Task:
         self.__deadline = new_deadline
         self.__priority = new_priority
 
-    def getTaskId(self):
+    def getTaskId(self) -> int:
         return self.__task_id
 
-    def displayTaskInfo(self):
-        print("\n=== Task Info ===")
-        print(f"Task ID: {self.__task_id}")
-        print(f"Title: {self.__title}")
-        print(f"Description: {self.__description}")
-        print(f"Deadline: {self.__deadline}")
-        print(f"Priority: {self.__priority}")
-        print(f"Status: {self.__status}")
-        print(f"Assignee: {self.__assignee}")
-        print("")
+    def getInfo(self) -> dict:
+        return {
+            "Task ID": self.__task_id,
+            "Title": self.__title,
+            "Description": self.__description,
+            "Deadline": self.__deadline,
+            "Priority": self.__priority,
+            "Status": self.__status,
+            "Assignee": self.__assignee,
+        }
