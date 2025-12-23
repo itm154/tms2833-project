@@ -1,7 +1,7 @@
 class Group:
     def __init__(self, group_name: str, group_id: int, leader):
         self.__group_name = group_name
-        self.__group_rn = group_id
+        self.__group_id = group_id
         # Members should be only the leader after creation for now
         self.__members = []
         self.__leader = leader
@@ -11,7 +11,7 @@ class Group:
         return self.__group_name
 
     def getGroupID(self):
-        return self.__group_rn
+        return self.__group_id
 
     def getGroupLeader(self):
         return self.__leader
@@ -33,6 +33,14 @@ class Group:
             if t.getTaskId() == task_id:
                 return t
         return None
+
+    def getGroupInfo(self):
+        return {
+            "Name": self.__group_name,
+            "ID": self.__group_id,
+            "Members": self.__members,
+            "Leader": self.__leader,
+        }
 
     def deleteTaskById(self, task_id: int) -> bool:
         for i, t in enumerate(self.__tasks):
