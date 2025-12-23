@@ -1,4 +1,3 @@
-import data_manager
 import ui_components
 from classes import Lecturer
 from data_manager import group_manager
@@ -28,7 +27,7 @@ def lecturerMenu(lecturer: Lecturer):
                 )
                 selected_group = groups[selected_group_index - 1]
 
-                report = lecturer.generateReport(selected_group.getGroupID(), 1)
+                report = lecturer.generateReport(selected_group.getGroupID())
                 if isinstance(report, dict):
                     ui_components.displayDict(
                         f"{selected_group.getGroupName()} group report", report
