@@ -7,7 +7,15 @@ def taskMenu(group: Group):
     while True:
         choice = ui_components.select(
             "Task Menu",
-            ["Add Task", "View Tasks", "Edit Task", "Delete Task", "Back"],
+            [
+                "Add Task",
+                "View Tasks",
+                "Edit Task",
+                "Delete Task",
+                "Assign Task",
+                "Update Task Status",
+                "Back",
+            ],
         )
 
         match choice:
@@ -18,11 +26,11 @@ def taskMenu(group: Group):
                 description = input("Description: ")
                 deadline = input("Deadline: ")
                 priority = ui_components.numericInput("Priority (1-5): ")
-
                 task = Task(task_id, title, description, deadline, priority)
-                task.createTask()
+
                 group.addTasks(task)
                 data_manager.saveGroup(group)
+                print(f"Task '{title}' created.")
 
                 # View Task
             case 2:
@@ -48,8 +56,8 @@ def taskMenu(group: Group):
                     new_desc = input("New Description: ")
                     new_deadline = input("New Deadline: ")
                     new_priority = ui_components.numericInput("New Priority (1-5): ")
-
                     task.editTask(new_title, new_desc, new_deadline, new_priority)
+
                     data_manager.saveGroup(group)
                     print("Task updated successfully.")
 
@@ -65,5 +73,31 @@ def taskMenu(group: Group):
                 else:
                     print("Task not found.")
 
+                # AssignTo
             case 5:
+                task_id = ui_components.numericInput("Enter Task ID: ")
+                task = group.getTaskById(task_id)
+
+                if task is None:
+                    print("Task not found.")
+                else:
+                    username = input("Enter username to assign: ")
+                    task.assignTo(username)
+                    data_manager.saveGroup(group)
+
+                # UpdateStatus
+            case 6:
+                task_id = ui_components.numericInput("Enter Task ID: ")
+                task = group.getTaskById(task_id)
+
+                if task is None:
+                    print("Task not found.")
+                else:
+                    new_status = input(
+                        "Enter new status (To Do / In Progress / Done): "
+                    )
+                    task.updateStatus(new_status)
+                    data_manager.saveGroup(group)
+
+            case 7:
                 break

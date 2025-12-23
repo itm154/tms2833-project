@@ -20,9 +20,6 @@ class Task:
         self.__status = status
         self.__assignee = assignee
 
-    def createTask(self):
-        print(f"Task '{self.__title}' created.")
-
     def updateStatus(self, new_status: str):
         self.__status = new_status
         print(f"Task status updated to '{self.__status}'.")
@@ -55,3 +52,4 @@ class Task:
         print(f"Priority: {self.__priority}")
         print(f"Status: {self.__status}")
         print(f"Assignee: {self.__assignee}")
+        print("")
