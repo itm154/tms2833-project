@@ -13,6 +13,7 @@ class Notification:
         self.__message = message  # The main box of the message
         self.__generated_date = datetime.now()  # Generated date is the current time
         self.__is_read = False  # Notifications come as unread by default
+        self._receiver = receiver # Receiver info for getInfo/sendTo
         Notification.counter = Notification.counter + 1
 
     def markAsRead(self):
@@ -23,6 +24,7 @@ class Notification:
         status = "Read" if self.__is_read else "Not read"
         return (
             f"---Notification---\n"
+            f"Receiver: {self._receiver.getUserName()}\n"
             f"Id      : {self.__notification_id}\n"
             f"Type    : {self.__type}\n"
             f"Message : {self.__message}\n"
@@ -30,5 +32,5 @@ class Notification:
             f"Status  : {status}\n"
         )
 
-    def sendTo(self, userid):
-        pass
+    def sendTo(self):
+        return f"Notification sent to {self._receiver.getUserName()}!"
