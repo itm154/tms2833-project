@@ -1,3 +1,5 @@
+from datetime import date
+
 from .user import User
 
 
@@ -7,7 +9,7 @@ class Task:
         task_id: int,
         title: str,
         description: str,
-        deadline: str,
+        deadline: date,
         priority: int,
         status: str = "To Do",
         assignee: User | None = None,
@@ -32,7 +34,7 @@ class Task:
         self,
         new_title: str,
         new_desc: str,
-        new_deadline: str,
+        new_deadline: date,
         new_priority: int,
     ):
         self.__title = new_title
