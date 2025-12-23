@@ -26,7 +26,7 @@ def groupMenu(group: Group):
                 title = input("Title: ")
                 description = input("Description: ")
                 deadline = input("Deadline: ")
-                priority = ui_components.numericInput("Priority (1-5): ")
+                priority = ui_components.numericInput("Priority [1-5]: ")
                 task = Task(task_id, title, description, deadline, priority)
 
                 group.addTasks(task)
@@ -40,8 +40,10 @@ def groupMenu(group: Group):
                 if not tasks:
                     print("No tasks in this group yet.")
                 else:
-                    for t in tasks:
-                        t.displayTaskInfo()
+                    task_count = 1
+                    for task in tasks:
+                        ui_components.displayDict(f"Task #{task_count}", task.getInfo())
+                        task_count += 1
 
                 # Edit Task
             case 3:
@@ -52,11 +54,10 @@ def groupMenu(group: Group):
                     print("Task not found.")
                 else:
                     print("\nEditing Task:")
-                    task.displayTaskInfo()
                     new_title = input("New Title: ")
                     new_desc = input("New Description: ")
                     new_deadline = input("New Deadline: ")
-                    new_priority = ui_components.numericInput("New Priority (1-5): ")
+                    new_priority = ui_components.numericInput("New Priority [1-5]: ")
                     task.editTask(new_title, new_desc, new_deadline, new_priority)
 
                     data_manager.saveGroup(group)
@@ -82,8 +83,8 @@ def groupMenu(group: Group):
                 if task is None:
                     print("Task not found.")
                 else:
-                    username = input("Enter username to assign: ")
-                    task.assignTo(username)
+                    username = input("Enter username: ")
+                    print(task.assignTo(username))
                     data_manager.saveGroup(group)
 
                 # UpdateStatus
