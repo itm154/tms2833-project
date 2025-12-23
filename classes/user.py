@@ -1,3 +1,6 @@
+from random import randint
+
+
 class User:
     def __init__(
         self, user_name: str, user_id: int, user_email: str, user_password: str
@@ -138,41 +141,15 @@ class Lecturer(User):
             "tasks": temp_group.getTasks(),
         }
 
-    def viewProgress(self, group_id: int):
+    def generateReport(self, group_id: int):
         from data_manager import group_manager
+        from classes.report import Report
 
         temp_group = group_manager.loadGroup(group_id)
         if temp_group is None:
             return "No groups available."
 
-        tasks = temp_group.getTasks()
-        if tasks is None:
-            return "Task is not assigned to this group."
-
-        total_tasks = len(tasks)
-        completed = sum(1 for task in tasks if task.get("status") == "Completed")
-        percentage = (completed / total_tasks) * 100
-
-        return f"Group {group_id} Progress: {percentage:.2f}% done"
-
-    def generateReport(self, group_id: int, report_id: int):
-        from data_manager import group_manager
-        from datetime import datetime
-
-        temp_group = group_manager.loadGroup(group_id)
-        if temp_group is None:
-            return "Group not available. Report cannot be Generated!"
-
-        tasks = temp_group.getTasks()
-        total_tasks = len(tasks)
-        completed = sum(1 for task in tasks if task.get("status") == "Completed")
-
-        report = {
-            "Report ID": report_id,
-            "Generated Date": datetime.now(),
-            "Total tasks": total_tasks,
-            "Completed tasks": completed,
-        }
+        report = Report(randint(100000, 999999), temp_group).getReport()
         return report
 
     def giveComments(self, group_id: int, task: str, comment: str):
