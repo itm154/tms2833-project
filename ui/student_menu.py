@@ -35,24 +35,19 @@ def studentMenu(student: Student):
                     data_manager.saveGroup(group)
                     data_manager.saveUser(student)
                 print(message)
-            case 3:  #
-                joined_groups = student.getJoinedGroups()
-                if not joined_groups:
+            case 3:  # Go to Group dashboard
+                joined_groups_ids = student.getJoinedGroups()
+                if not joined_groups_ids:
                     print("You are not part of any group.")
                 else:
-                    group_names = []
-                    id_list = []
-                    for group_id in joined_groups:
-                        temp_group = data_manager.loadGroup(group_id)
-                        if temp_group:
-                            group_names.append(temp_group.getGroupName())
-                            id_list.append(group_id)
-                        else:
-                            break
-                    selected_index = ui_components.select(
-                        "Please Select the Group you wish to visit", group_names
+                    joined_groups = [
+                        group
+                        for group_id in joined_groups_ids
+                        if (group := data_manager.loadGroup(group_id))
+                    ]
+                    selected_group = ui_components.selectGroup(
+                        "Please Select the Group you wish to operate in", joined_groups
                     )
-                    selected_group = data_manager.loadGroup(id_list[selected_index - 1])
                     if selected_group:
                         ui.taskMenu(selected_group)
             case 4:  # Display information
