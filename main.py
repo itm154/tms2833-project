@@ -26,7 +26,7 @@ def main():
         if isinstance(user, Student):
             ui.studentMenu(user)
         elif isinstance(user, Lecturer):
-            pass
+            ui.lecturerMenu(user)
         else:
             pass
 

@@ -150,5 +150,5 @@ class Lecturer(User):
         report = Report(group_id, datetime.now(), temp_group)
         return report.generateReport()
 
-    def giveComments():
-        pass
+    def giveComments(self, group_id: int, task: str, comment: str):
+        return f"Lecturer {self.getUserName()} comments on task {task} : {comment}"

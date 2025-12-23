@@ -16,8 +16,7 @@ def studentMenu(student: Student):
             ],
         )
         match choice:
-            case 1:
-                # Student Creates a Group
+            case 1:  # Create group
                 name = str(input("Please enter Group Name: "))
                 id = ui_components.numericInput("Please enter Group ID: ")
                 new_group, message = student.createGroup(name, id)
@@ -26,8 +25,7 @@ def studentMenu(student: Student):
                     data_manager.saveUser(student)
                 print(message)
 
-            case 2:
-                # Student Joins a Group
+            case 2:  # Join group
                 group_id = ui_components.numericInput(
                     "Please enter the ID of the group: "
                 )
@@ -36,7 +34,7 @@ def studentMenu(student: Student):
                     data_manager.saveGroup(group)
                     data_manager.saveUser(student)
                 print(message)
-            case 3:
+            case 3:  # View group
                 joined_groups = student.getJoinedGroups()
                 if not joined_groups:
                     print("You are not part of any group.")
@@ -65,9 +63,8 @@ def studentMenu(student: Student):
                             # print("Tasks: ")
                         else:
                             print(group_details)
-            case 4:
+            case 4:  # Display information
                 ui_components.displayDict("My information", student.getInfo())
 
-            case 5:
-                # Logging out
+            case 5:  # Logging out
                 break
