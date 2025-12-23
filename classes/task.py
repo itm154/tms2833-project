@@ -20,9 +20,6 @@ class Task:
         self.__status = status
         self.__assignee = assignee
 
-    def createTask(self):
-        print(f"Task '{self.__title}' created.")
-
     def updateStatus(self, new_status: str):
         self.__status = new_status
         print(f"Task status updated to '{self.__status}'.")
@@ -42,10 +39,12 @@ class Task:
         self.__description = new_desc
         self.__deadline = new_deadline
         self.__priority = new_priority
-        print("Task updated successfully.")
+
+    def getTaskId(self):
+        return self.__task_id
 
     def displayTaskInfo(self):
-        print("=== Task Info ===")
+        print("\n=== Task Info ===")
         print(f"Task ID: {self.__task_id}")
         print(f"Title: {self.__title}")
         print(f"Description: {self.__description}")
@@ -53,3 +52,4 @@ class Task:
         print(f"Priority: {self.__priority}")
         print(f"Status: {self.__status}")
         print(f"Assignee: {self.__assignee}")
+        print("")
