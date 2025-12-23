@@ -94,10 +94,10 @@ def groupMenu(group: Group):
                 if task is None:
                     print("Task not found.")
                 else:
-                    new_status = input(
-                        "Enter new status (To Do / In Progress / Done): "
-                    )
-                    task.updateStatus(new_status)
+                    statuses = ["To Do", "Completed"]
+                    status_choice = ui_components.select("New status", statuses)
+                    new_status = statuses[status_choice - 1]
+                    print(task.updateStatus(new_status))
                     data_manager.saveGroup(group)
 
             case 7:
