@@ -14,6 +14,7 @@ def taskMenu(group: Group):
                 "Delete Task",
                 "Assign Task",
                 "Update Task Status",
+                "View group information",
                 "Back",
             ],
         )
@@ -100,4 +101,7 @@ def taskMenu(group: Group):
                     data_manager.saveGroup(group)
 
             case 7:
+                ui_components.displayDict("Group information", group.getGroupInfo())
+
+            case 8:
                 break
