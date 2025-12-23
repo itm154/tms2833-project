@@ -20,3 +20,15 @@ def loadGroup(group_id: int) -> Group | None:
         with open(file_path, "rb") as f:
             return pickle.load(f)
     return None
+
+
+def loadAllGroups() -> list[Group]:
+    groups = []
+    if os.path.exists(DATA_DIR):
+        for filename in os.listdir(DATA_DIR):
+            if filename.startswith("group_") and filename.endswith(".pkl"):
+                group_id = int(filename.split("_")[1].split(".")[0])
+                group = loadGroup(group_id)
+                if group:
+                    groups.append(group)
+    return groups
