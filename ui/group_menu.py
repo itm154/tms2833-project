@@ -3,7 +3,7 @@ import ui_components
 from classes import Group, Task
 
 
-def taskMenu(group: Group):
+def groupMenu(group: Group):
     while True:
         choice = ui_components.select(
             "Task Menu",

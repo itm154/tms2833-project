@@ -1,6 +1,6 @@
 import data_manager
-import ui
 import ui_components
+from .group_menu import groupMenu
 from classes import Student
 
 
@@ -49,7 +49,7 @@ def studentMenu(student: Student):
                         "Please Select the Group you wish to operate in", joined_groups
                     )
                     if selected_group:
-                        ui.taskMenu(selected_group)
+                        groupMenu(selected_group)
             case 4:  # Display information
                 ui_components.displayDict("My information", student.getInfo())
 
