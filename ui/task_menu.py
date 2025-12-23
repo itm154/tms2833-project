@@ -53,8 +53,17 @@ def taskMenu(group: Group):
                     data_manager.saveGroup(group)
                     print("Task updated successfully.")
 
+                # Delete Task
             case 4:
-                pass
+                task_id = ui_components.numericInput("Enter Task ID to delete: ")
+
+                success = group.deleteTaskById(task_id)
+
+                if success:
+                    data_manager.saveGroup(group)
+                    print("Task deleted successfully.")
+                else:
+                    print("Task not found.")
 
             case 5:
                 break

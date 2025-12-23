@@ -36,3 +36,10 @@ class Group:
             if t.getTaskId() == task_id:
                 return t
         return None
+
+    def deleteTaskById(self, task_id: int) -> bool:
+        for i, t in enumerate(self.__tasks):
+            if t.getTaskId() == task_id:
+                self.__tasks.pop(i)
+                return True
+        return False
