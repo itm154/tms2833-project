@@ -1,4 +1,5 @@
 import ui_components
+from .group_menu import groupMenu
 from classes import Lecturer
 from data_manager import group_manager
 
@@ -8,17 +9,15 @@ def lecturerMenu(lecturer: Lecturer):
         choice = ui_components.select(
             "Please Select An Action",
             [
-                "Generate group report",
-                "View Group",
+                "Generate Group report",
+                "Group dashboard",
                 "View My Information",
                 "Log Out",
             ],
         )
         match choice:
             case 1:  # Generate group report
-                selected_group = ui_components.selectGroup(
-                    "Select a group to generate report"
-                )
+                selected_group = ui_components.selectGroup("Select a group")
 
                 if selected_group:
                     report = lecturer.generateReport(selected_group.getGroupID())
@@ -29,7 +28,11 @@ def lecturerMenu(lecturer: Lecturer):
                     else:
                         print(report)
             case 2:  # View group
-                pass
+                selected_group = ui_components.selectGroup(
+                    "Please Select the Group you wish to operate in"
+                )
+                if selected_group:
+                    groupMenu(selected_group)
             case 3:  # View my information
                 pass
                 ui_components.displayDict("My information", lecturer.getInfo())

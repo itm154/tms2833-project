@@ -11,7 +11,7 @@ def studentMenu(student: Student):
             [
                 "Create Group",
                 "Join Group",
-                "Go to Group dashboard",
+                "Group dashboard",
                 "View My Information",
                 "Log Out",
             ],
