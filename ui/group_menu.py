@@ -25,7 +25,7 @@ def groupMenu(group: Group):
                 task_id = ui_components.numericInput("Task ID: ")
                 title = input("Title: ")
                 description = input("Description: ")
-                deadline = ui_components.dateInput("Deadline: ")
+                deadline = ui_components.dateInput("Deadline (Format: dd/mm/yyyy): ")
                 priority = ui_components.numericInput("Priority [1-5]: ")
                 task = Task(task_id, title, description, deadline, priority)
 
@@ -61,7 +61,9 @@ def groupMenu(group: Group):
                     print("\nEditing Task:")
                     new_title = input("New Title: ")
                     new_desc = input("New Description: ")
-                    new_deadline = ui_components.dateInput("New Deadline: ")
+                    new_deadline = ui_components.dateInput(
+                        "New Deadline (Format: dd/mm/yyyy): "
+                    )
                     new_priority = ui_components.numericInput("New Priority [1-5]: ")
                     task.editTask(new_title, new_desc, new_deadline, new_priority)
 
