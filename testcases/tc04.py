@@ -3,7 +3,7 @@ from classes import Student
 
 
 def tc04():
-    print("TC-04: Join Group")
+    print("\n\n\nTC-04: Join Group")
 
     print("Creating group user...")
     owner = Student("Tester", 121213, "test@gmail.com", "Test", [])

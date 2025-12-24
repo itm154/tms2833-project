@@ -5,7 +5,7 @@ import ui_components
 
 
 def tc05():
-    print("TC-05: Update task")
+    print("\n\n\nTC-05: Update task")
 
     print("--- Running Preconditions ---")
     print("Creating new user...")
