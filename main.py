@@ -1,8 +1,9 @@
 import argparse
+
 import testcases
-import user_auth
-import ui_components
 import ui
+import ui_components
+import user_auth
 from classes import Lecturer, Student
 
 
@@ -38,6 +39,7 @@ def main():
 def runTests():
     testcases.tc01()
     testcases.tc02()
+    testcases.tc04()
 
 
 if __name__ == "__main__":
