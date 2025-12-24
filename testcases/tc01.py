@@ -3,10 +3,12 @@ import ui_components
 
 
 def tc01():
-    print("TC-01: Create group")
+    print("\n\n\nTC-01: Create group")
 
+    print("--- Running Preconditions ---")
     print("Creating new user...")
     new_user = Student("Tester", 123123, "test@gmail.com", "test", [])
+    print("--- --- --- --- ---")
 
     print("Creating group...")
     group, message = new_user.createGroup("Test Group", 67)

@@ -2,8 +2,9 @@ from classes import Lecturer
 
 
 def tc02():
-    print("TC-02: Failed to generate report")
+    print("\n\n\nTC-02: Failed to generate report")
 
+    print("--- Running Preconditions ---")
     print("Creating new user...")
     new_user = Lecturer(
         "Lecturer1",
@@ -14,6 +15,7 @@ def tc02():
         "FCSIT",
         "TMS2388",
     )
+    print("--- --- --- --- ---")
 
     print("Trying to generate report on a group that doesn't exist...")
     report = new_user.generateReport(987654)  # Random group id that doesnt exist
@@ -23,3 +25,4 @@ def tc02():
     else:
         print("Test case pass!")
         print("Message: " + report)
+        print()

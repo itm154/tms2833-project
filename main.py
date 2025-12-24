@@ -40,6 +40,7 @@ def runTests():
     testcases.tc01()
     testcases.tc02()
     testcases.tc04()
+    testcases.tc05()
 
 
 if __name__ == "__main__":
