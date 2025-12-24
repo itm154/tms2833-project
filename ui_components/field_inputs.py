@@ -1,6 +1,6 @@
 import getpass
 import re
-from datetime import datetime
+from datetime import date, datetime
 
 
 def isValidEmail(email: str) -> bool:
@@ -31,11 +31,10 @@ def numericInput(prompt: str) -> int:
             print("Error: Invalid input. Please enter a number.")
 
 
-def dateInput(prompt: str) -> str:
+def dateInput(prompt: str) -> date:
     while True:
         try:
             date = str(input(prompt))
-            datetime.strptime(date, "%d/%m/%Y").date()
-            return date
+            return datetime.strptime(date, "%d/%m/%Y").date()
         except ValueError:
-            print("Invalid date or format. Please follow the format dd/mm/yyyy")
+            print("Error: Invalid date or format. Please follow the format dd/mm/yyyy")

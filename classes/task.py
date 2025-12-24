@@ -45,6 +45,12 @@ class Task:
     def getTaskId(self) -> int:
         return self.__task_id
 
+    def getDeadline(self) -> date:
+        return self.__deadline
+
+    def getTitle(self) -> str:
+        return self.__title
+
     def getInfo(self) -> dict:
         return {
             "Task ID": self.__task_id,

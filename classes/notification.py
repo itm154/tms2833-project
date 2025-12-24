@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import date, datetime, timedelta
+
 from .user import User
 
 
@@ -30,5 +31,9 @@ class Notification:
             f"Status  : {status}\n"
         )
 
-    def sendTo(self, userid):
-        pass
+    @staticmethod
+    def remindDeadline(deadline: date, task_title: str):
+        remaining_time = deadline - date.today()
+        days_left = remaining_time.days
+        if timedelta(0) < remaining_time <= timedelta(days=3):
+            return f"{task_title} is due in {days_left} days."

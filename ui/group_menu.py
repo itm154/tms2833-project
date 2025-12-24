@@ -1,6 +1,6 @@
 import data_manager
 import ui_components
-from classes import Group, Task
+from classes import Group, Notification, Task
 
 
 def groupMenu(group: Group):
@@ -36,7 +36,6 @@ def groupMenu(group: Group):
                 # View Task
             case 2:
                 tasks = group.getTasks()
-
                 if not tasks:
                     print("No tasks in this group yet.")
                 else:
@@ -44,7 +43,13 @@ def groupMenu(group: Group):
                     for task in tasks:
                         ui_components.displayDict(f"Task #{task_count}", task.getInfo())
                         task_count += 1
-
+                    # Two separate for loops because the deadline notifications should all appear at the bottom for clearer visibility.
+                    for task in tasks:
+                        print(
+                            Notification.remindDeadline(
+                                task.getDeadline(), task.getTitle()
+                            )
+                        )
                 # Edit Task
             case 3:
                 task_id = ui_components.numericInput("Enter Task ID to edit: ")
