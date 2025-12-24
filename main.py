@@ -37,6 +37,7 @@ def main():
 
 def runTests():
     testcases.tc01()
+    testcases.tc02()
 
 
 if __name__ == "__main__":

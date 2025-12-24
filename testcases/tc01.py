@@ -15,5 +15,5 @@ def tc01():
         print(message)
         ui_components.displayDict("Created Group", group.getGroupInfo())
     else:
-        print(message)
-        print("Group is not created")
+        print("Test case failed! User failed to create group.")
+        print("Message:" + message)
