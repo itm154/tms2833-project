@@ -20,7 +20,7 @@ def lecturerMenu(lecturer: Lecturer):
                 selected_group = ui_components.selectGroup("Select a group")
 
                 if selected_group:
-                    report = lecturer.generateReport(selected_group.getGroupID())
+                    report = lecturer.generateReport(selected_group.getGroupId())
                     if isinstance(report, dict):
                         ui_components.displayDict(
                             f"{selected_group.getGroupName()} group report", report
