@@ -39,6 +39,7 @@ def main():
 def runTests():
     testcases.tc01()
     testcases.tc02()
+    testcases.tc03()
     testcases.tc04()
     testcases.tc05()
 

@@ -1,11 +1,11 @@
-from datetime import date, datetime
-from classes import Task
-from classes import Student
+from datetime import datetime
+
 import ui_components
+from classes import Student, Task
 
 
 def tc05():
-    print("TC-05: Update task")
+    print("\n\n\nTC-05: Update task")
 
     print("--- Running Preconditions ---")
     print("Creating new user...")
@@ -39,6 +39,7 @@ def tc05():
                 3,
             )
             ui_components.displayDict("Task information", task.getInfo())
+            print("Test case 5 passed!")
         else:
             print("Test case failed!")
             print("Failed to update task!")
