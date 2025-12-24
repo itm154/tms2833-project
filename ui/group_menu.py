@@ -1,6 +1,6 @@
 import data_manager
 import ui_components
-from classes import Group, Task
+from classes import Group, Notification, Task
 
 
 def groupMenu(group: Group):
@@ -25,7 +25,7 @@ def groupMenu(group: Group):
                 task_id = ui_components.numericInput("Task ID: ")
                 title = input("Title: ")
                 description = input("Description: ")
-                deadline = input("Deadline: ")
+                deadline = ui_components.dateInput("Deadline (Format: dd/mm/yyyy): ")
                 priority = ui_components.numericInput("Priority [1-5]: ")
                 task = Task(task_id, title, description, deadline, priority)
 
@@ -36,7 +36,6 @@ def groupMenu(group: Group):
                 # View Task
             case 2:
                 tasks = group.getTasks()
-
                 if not tasks:
                     print("No tasks in this group yet.")
                 else:
@@ -44,7 +43,13 @@ def groupMenu(group: Group):
                     for task in tasks:
                         ui_components.displayDict(f"Task #{task_count}", task.getInfo())
                         task_count += 1
-
+                    # Two separate for loops because the deadline notifications should all appear at the bottom for clearer visibility.
+                    for task in tasks:
+                        print(
+                            Notification.remindDeadline(
+                                task.getDeadline(), task.getTitle()
+                            )
+                        )
                 # Edit Task
             case 3:
                 task_id = ui_components.numericInput("Enter Task ID to edit: ")
@@ -56,7 +61,9 @@ def groupMenu(group: Group):
                     print("\nEditing Task:")
                     new_title = input("New Title: ")
                     new_desc = input("New Description: ")
-                    new_deadline = input("New Deadline: ")
+                    new_deadline = ui_components.dateInput(
+                        "New Deadline (Format: dd/mm/yyyy): "
+                    )
                     new_priority = ui_components.numericInput("New Priority [1-5]: ")
                     task.editTask(new_title, new_desc, new_deadline, new_priority)
 
