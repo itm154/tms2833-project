@@ -26,7 +26,7 @@ class Group:
     def getGroupName(self) -> str:
         return self.__group_name
 
-    def getGroupID(self) -> int:
+    def getGroupId(self) -> int:
         return self.__group_id
 
     def getGroupLeader(self) -> str:

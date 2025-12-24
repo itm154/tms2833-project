@@ -27,5 +27,5 @@ def selectGroupID(
 ) -> int | None:
     selected_group = selectGroup(title, groups_list)
     if selected_group:
-        return selected_group.getGroupID()
+        return selected_group.getGroupId()
     return None

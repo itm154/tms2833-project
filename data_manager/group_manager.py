@@ -9,7 +9,7 @@ def saveGroup(group: Group):
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)
 
-    file_path = os.path.join(DATA_DIR, f"group_{group.getGroupID()}.pkl")
+    file_path = os.path.join(DATA_DIR, f"group_{group.getGroupId()}.pkl")
     with open(file_path, "wb") as f:
         pickle.dump(group, f)
 
