@@ -7,6 +7,8 @@ import user_auth
 from classes import Lecturer, Student
 
 
+# User Interface for Main Menu
+# Implemented by: Raimi Danial bin Mohd Radzi (102930)
 def main():
     user = None
     authenticated = False

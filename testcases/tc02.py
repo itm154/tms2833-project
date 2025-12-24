@@ -1,6 +1,8 @@
 from classes import Lecturer
 
 
+# Test Case 2
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 def tc02():
     print("\n\n\nTC-02: Failed to generate report")
 

@@ -3,6 +3,8 @@ from datetime import datetime
 from .group import Group
 
 
+# Class: Report
+# Implemented by: Hii Chiong Hing (104347)
 class Report:
     def __init__(self, report_id: int, group: Group):
         self.__report_id = report_id

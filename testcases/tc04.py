@@ -2,6 +2,8 @@ import ui_components
 from classes import Student
 
 
+# Test Case 4
+# Implemented by: Seng Zhi Jie (106256)
 def tc04():
     print("\n\n\nTC-04: Join Group")
 

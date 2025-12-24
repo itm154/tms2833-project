@@ -3,6 +3,8 @@ import re
 from datetime import date, datetime
 
 
+# User Interface Components for Field Input Validation
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 def isValidEmail(email: str) -> bool:
     email_regex = r"[^@]+@[^@]+\.[^@]+"
     return re.match(email_regex, email) is not None

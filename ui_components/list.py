@@ -2,7 +2,8 @@
 # somelist = ["person 1", "person2", "person3"]
 # ui.display_list("Title", somelist)
 
-
+# User Interface Components for Selecting Group
+# Implemented by: Seng Zhi Jie (106256)
 def displayList(title: str, items: list):
     titlebar = f"\n--- {title} ---"
     closing_line = "-" * len(titlebar)

@@ -1,8 +1,8 @@
 from datetime import date, datetime, timedelta
 
-from .user import User
 
-
+# Class: Student
+# Implemented by: Seng Zhi Jie (106256)
 class Notification:
     counter = 1
 

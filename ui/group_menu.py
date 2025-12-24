@@ -3,6 +3,8 @@ import ui_components
 from classes import Group, Notification, Task
 
 
+# User Interface for Task
+# Implemented by Hii Chiong Hing (104347)
 def groupMenu(group: Group):
     while True:
         choice = ui_components.select(

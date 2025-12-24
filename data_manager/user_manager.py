@@ -6,6 +6,8 @@ from classes import User
 DATA_DIR = "data"
 
 
+# File Handling Logic for User
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 def saveUser(user: User):
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)
