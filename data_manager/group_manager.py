@@ -1,10 +1,13 @@
-from classes import Group
-import pickle
 import os
+import pickle
+
+from classes import Group
 
 DATA_DIR = "data"
 
 
+# File Handling Logic for Group
+# Implemented by: Seng Zhi Jie (106256)
 def saveGroup(group: Group):
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)

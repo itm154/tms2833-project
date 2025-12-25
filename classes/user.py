@@ -1,6 +1,8 @@
 from random import randint
 
 
+# Class: User
+# Implemented by: Raimi Danial bin Mohd Radzi (102930)
 class User:
     def __init__(
         self, user_name: str, user_id: int, user_email: str, user_password: str
@@ -30,6 +32,8 @@ class User:
         }
 
 
+# Class: Student
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 class Student(User):
     def __init__(
         self,
@@ -107,6 +111,8 @@ class Student(User):
         }
 
 
+# Class: Lecturer
+# Implemented by: Seng Zhi Jie (106256)
 class Lecturer(User):
     def __init__(
         self, user_name, staff_id, user_email, user_password, office, faculty, course_id
@@ -142,8 +148,8 @@ class Lecturer(User):
         }
 
     def generateReport(self, group_id: int):
-        from data_manager import group_manager
         from classes.report import Report
+        from data_manager import group_manager
 
         temp_group = group_manager.loadGroup(group_id)
         if temp_group is None:

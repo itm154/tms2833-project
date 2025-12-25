@@ -1,8 +1,10 @@
 import ui_components
+from classes import Lecturer, Student
 from data_manager import user_manager
-from classes import Student, Lecturer
 
 
+# User Authentication Logic
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 def register():
     # Fill general information
     user_name = str(input("Please insert your Username: "))
