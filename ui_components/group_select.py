@@ -1,9 +1,13 @@
-from data_manager import group_manager
-from .select import select
-from classes import Group
 from typing import List
 
+from classes import Group
+from data_manager import group_manager
 
+from .select import select
+
+
+# User Interface Components for Selecting Group
+# Implemented by: Hii Chiong Hing (104347)
 # Parameter for group can either be a list (of joined groups for students) or nothing (for lecturer cus they can see all)
 def selectGroup(
     title: str = "Select Group", groups_list: List[Group] | None = None

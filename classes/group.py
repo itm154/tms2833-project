@@ -1,6 +1,8 @@
 from .task import Task
 
 
+# Class: Group
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 class Group:
     def __init__(self, group_name: str, group_id: int, leader):
         self.__group_name = group_name

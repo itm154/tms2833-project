@@ -1,0 +1,30 @@
+from classes import Lecturer
+
+
+# Test Case 2
+# Implemented by: Muhammad Ashrul Fahmi (102725)
+def tc02():
+    print("\n\n\nTC-02: Failed to generate report")
+
+    print("--- Running Preconditions ---")
+    print("Creating new user...")
+    new_user = Lecturer(
+        "Lecturer1",
+        123123,
+        "lecturer@staff.com",
+        "password",
+        "CUBE",
+        "FCSIT",
+        "TMS2388",
+    )
+    print("--- --- --- --- ---")
+
+    print("Trying to generate report on a group that doesn't exist...")
+    report = new_user.generateReport(987654)  # Random group id that doesnt exist
+
+    if isinstance(report, dict):
+        print("Test case failed! Group report created on a group that does not exist!")
+    else:
+        print("Test case pass!")
+        print("Message: " + report)
+        print()

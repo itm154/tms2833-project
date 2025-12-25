@@ -1,9 +1,11 @@
 import ui_components
-from .group_menu import groupMenu
 from classes import Lecturer
-from data_manager import group_manager
+
+from .group_menu import groupMenu
 
 
+# User Interface for Lecturer
+# Implemented by: Muhammad Ashrul Fahmi (102725)
 def lecturerMenu(lecturer: Lecturer):
     while True:
         choice = ui_components.select(

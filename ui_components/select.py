@@ -6,7 +6,8 @@
 #         print("doing thing 1")
 # ...
 
-
+# User Interface Components for Selecting Group
+# Implemented by: Raimi Danial bin Mohd Radzi (102930)
 def select(title: str, options: list[str]) -> int:
     titlebar = f"\n--- {title} ---"
     print(titlebar)

@@ -3,6 +3,8 @@ from datetime import date
 from .user import User
 
 
+# Class: Task
+# Implemented by: Hii Chiong Hing (104347)
 class Task:
     def __init__(
         self,
