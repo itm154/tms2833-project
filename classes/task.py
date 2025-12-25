@@ -53,6 +53,9 @@ class Task:
     def getTitle(self) -> str:
         return self.__title
 
+    def getStatus(self) -> str:
+        return self.__status
+
     def getInfo(self) -> dict:
         return {
             "Task ID": self.__task_id,
