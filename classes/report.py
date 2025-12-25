@@ -1,5 +1,5 @@
 from datetime import datetime
-from .user import User
+
 from .group import Group
 
 
@@ -16,10 +16,10 @@ class Report:
             "Report ID": self.__report_id,
             "Generated date": self.__generated_date,
             "Total tasks": self.__total_tasks,
-            "Completed tasks": self.calculateCompletionRate(),
+            "Completed tasks": self.__calculateCompletionRate(),
         }
 
-    def calculateCompletionRate(self) -> float:
+    def __calculateCompletionRate(self) -> float:
         if self.__total_tasks == 0:
             rate = 0.0
         else:
@@ -27,3 +27,6 @@ class Report:
 
         print(f"Completion Rate: {rate:.2f}%")
         return rate
+
+    def getTotalTasks(self) -> int:
+        return self.__total_tasks
