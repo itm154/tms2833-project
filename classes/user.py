@@ -7,28 +7,28 @@ class User:
     def __init__(
         self, user_name: str, user_id: int, user_email: str, user_password: str
     ):
-        self.__user_name = user_name
-        self.__user_id = user_id
-        self.__user_email = user_email
-        self.__user_password = user_password
+        self._user_name = user_name
+        self._user_id = user_id
+        self._user_email = user_email
+        self._user_password = user_password
 
     def getUserName(self) -> str:
-        return self.__user_name
+        return self._user_name
 
     def getUserID(self) -> int:
-        return self.__user_id
+        return self._user_id
 
     def getUserEmail(self) -> str:
-        return self.__user_email
+        return self._user_email
 
     def getPassword(self) -> str:
-        return self.__user_password
+        return self._user_password
 
     def getInfo(self) -> dict:
         return {
-            "Username": self.__user_name,
-            "ID": self.__user_id,
-            "Email": self.__user_email,
+            "Username": self._user_name,
+            "ID": self._user_id,
+            "Email": self._user_email,
         }
 
 
@@ -67,13 +67,13 @@ class Student(User):
         if temp_group is None:
             return None, "Group not found."
 
-        if self.getUserName() in temp_group.getMemberList():
+        if self._user_name in temp_group.getMemberList():
             return (
                 None,
-                f"{self.getUserName()} is already a member of {temp_group.getGroupName()}.",
+                f"{self._user_name} is already a member of {temp_group.getGroupName()}.",
             )
 
-        temp_group.addMember(self.getUserName())
+        temp_group.addMember(self._user_name)
         group_manager.saveGroup(temp_group)
 
         # Loads the student and updates student joined group list
@@ -81,14 +81,14 @@ class Student(User):
         user_manager.saveUser(self)
         return (
             temp_group,
-            f"{self.getUserName()} successfully enrolled in group.",
+            f"{self._user_name} successfully enrolled in group.",
         )
 
     def createGroup(self, group_name: str, group_id: int):
         from classes.group import Group
         from data_manager import group_manager
 
-        new_group = Group(group_name, group_id, self.getUserName())
+        new_group = Group(group_name, group_id, self._user_name)
         group_manager.saveGroup(new_group)
         joined_group, message = self.joinGroup(group_id)
         return joined_group, f"Group created. {message}"
@@ -100,7 +100,7 @@ class Student(User):
         if temp_group is None:
             return "No groups available."
 
-        if self.getUserName() not in temp_group.getMemberList():
+        if self._user_name not in temp_group.getMemberList():
             return "You are not a member of this group."
 
         return {
@@ -159,4 +159,4 @@ class Lecturer(User):
         return report
 
     def giveComments(self, group_id: int, task: str, comment: str):
-        return f"Lecturer {self.getUserName()} comments on task {task} : {comment}"
+        return f"Lecturer {self._user_name} comments on task {task} : {comment}"

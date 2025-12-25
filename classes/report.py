@@ -11,14 +11,17 @@ class Report:
         self.__generated_date = datetime.now()
         self.__group = group
         self.__total_tasks = len(self.__group.getTasks())
-        self.__completed_tasks = 0
+        self.__completed_tasks = sum(
+            1 for task in self.__group.getTasks() if task.getStatus() == "Completed"
+        )
 
     def getReport(self) -> dict:
         return {
             "Report ID": self.__report_id,
             "Generated date": self.__generated_date,
             "Total tasks": self.__total_tasks,
-            "Completed tasks": self.__calculateCompletionRate(),
+            "Completed tasks": self.__completed_tasks,
+            "Completion rate": self.__calculateCompletionRate(),
         }
 
     def __calculateCompletionRate(self) -> float:

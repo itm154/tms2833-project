@@ -1,3 +1,4 @@
+from datetime import datetime
 import ui_components
 from classes import Student, Task
 
@@ -20,7 +21,11 @@ def tc03():
         ui_components.displayDict("Created Group", group.getGroupInfo())
         print("Creating Task...")
         new_task = Task(
-            1, "Test Case 3", "Testing for Case 3: Add Task", "29/12/2025", 5
+            1,
+            "Test Case 3",
+            "Testing for Case 3: Add Task",
+            datetime.strptime("29/12/2025", "%d/%m/%Y").date(),
+            5,
         )
         if new_task is not None:
             group.addTasks(new_task)
